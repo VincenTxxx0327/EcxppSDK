@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="cmdNew">cmdNew</string>
+    <string name="GatewayPsw">GatewayPsw</string>
+    <string name="isLocal">isLocal</string>
+
+
+    <string name="tips">提示</string>
+
+</resources>
