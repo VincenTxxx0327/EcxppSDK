@@ -24,8 +24,11 @@ public class Constant {
     public static final String EXTRA_CONNECT_SERVER = "extra_connect_server";
 
     //SharePreference存储key值
-    public static final String SPK_HAS_INIT     = "has_init";
-    public static final String SPK_GATEWAY_ID   = "gateway_id";
+    public static final String SPK_HAS_INIT = "has_init";
+    public static final String SPK_GATEWAY  = "gateway";
+    public static final String SPK_IS_LOCAL = "isLocal";
+    public static final String SPK_LOCAL    = "local";
+    public static final String SPK_CLOUD    = "cloud";
 
     //常量数字
     public static final int CONNECT_SERVER = 100;

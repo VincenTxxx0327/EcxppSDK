@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <color name="colorAccent">@color/ThemeGreen</color>
-    <color name="ThemeGreen">#D2E475</color>
-
-    //等同主题深绿色
-    //等同主题绿色
-
-    <!-- loading框里文字动画颜色 -->
-    <!-- loading框里文字动画颜色 -->
-    <!-- 176透明黑色蒙版-->
-    <!-- 176透明白色蒙版-->
-    <!-- 125透明黑色蒙版 -->
-    <!-- 125透明白色蒙版 -->
-    <!-- 96透明黑色蒙版 -->
-    <!-- 96透明白色蒙版 -->
-    <!-- 176透明黑色二维码结果点 -->
-    <!-- 主题绿色二维码可能结果点 -->
-
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>

@@ -11,22 +11,15 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
 import com.ecxppsdk.R;
 import com.ecxppsdk.data.Constant;
 import com.ecxppsdk.data.URLs;
-import com.ecxppsdk.database.DBService;
-import com.ecxppsdk.database.entity.Gateway;
 
-import org.xutils.x;
-
-import static com.ecxppsdk.base.LnledApp.phoneMac;
 import static com.ecxppsdk.utils.ConversionUtils.hexString2BytesData;
 import static com.ecxppsdk.utils.ConversionUtils.hexString2BytesNew;
-import static com.ecxppsdk.utils.ConversionUtils.hexString2BytesOld;
 
 
 /**
@@ -39,70 +32,44 @@ public class DeviceUtils {
 
     /**
      * 获取IP地址
+     *
      * @param context
      * @return
      */
-    public static String getIP(Context context, boolean connectServer) {
-        Gateway gateway = DBService.getInstance().loadGatewayById(SharedPreUtils.getLong(context, Constant.SPK_GATEWAY_ID, 1L));
-        if(gateway == null){
-            SharedPreUtils.putLong(context, Constant.SPK_GATEWAY_ID, 1L);
-            gateway = new Gateway();
-        }
+    public static String getIP(Context context) {
         String ip;
-        if(connectServer) {         //互联网连接，根据勾选判断ip使用局域网还是互联网
-            if (SharedPreUtils.getBoolean(context, context.getString(R.string.isLocal), false)) {
-                if(TextUtils.isEmpty(gateway.getLocalIP())){
-                    ip = URLs.LAN_URL;
-                }else {
-                    ip = gateway.getLocalIP();
-                }
-            } else {
-                if (TextUtils.isEmpty(gateway.getCloudIP())) {
-                    ip = URLs.YUN_URL;
-                } else {
-                    ip = gateway.getCloudIP();
-                }
-            }
-        }else{                     //局域网连接，ip默认使用局域网，直接去执行登录指令发送
-            if(TextUtils.isEmpty(gateway.getLocalIP())){
-                ip = URLs.LAN_URL;
-            }else {
-                ip = gateway.getLocalIP();
-            }
+        if (SharedPreUtils.getBoolean(context, Constant.SPK_IS_LOCAL, false)) {
+            ip = SharedPreUtils.getString(context, Constant.SPK_LOCAL, URLs.LAN_URL);
+        } else {
+            ip = SharedPreUtils.getString(context, Constant.SPK_CLOUD, URLs.YUN_URL);
         }
         return ip;
     }
 
     /**
      * 获取网关mac码
+     *
+     * @param context
      * @return
      */
-    public static byte[] getDstMac() {
-        long mGatewayId = SharedPreUtils.getLong(x.app(), Constant.SPK_GATEWAY_ID, 1L);
-        Gateway mGateway = DBService.getInstance().loadGatewayById(mGatewayId);
-        String gateway = "010101010101";
-        if(mGateway != null) {
-            if(!TextUtils.isEmpty(mGateway.getGatewayId()))
-                gateway = mGateway.getGatewayId();
-        }
+    public static byte[] getDstMac(Context context) {
+        String gateway = SharedPreUtils.getString(context, Constant.SPK_GATEWAY, "123456123456");
         return hexString2BytesData(gateway);
     }
 
     /**
      * 获取手机设备Mac地址，转为16进制
+     *
+     * @param context
      * @return
      */
-    public static byte[] getSrcMac() {
-        if(SharedPreUtils.getBoolean(x.app(), x.app().getString(R.string.cmdNew), false)) {
-            phoneMac = hexString2BytesNew(getSrcMacStr(LnledApp.getInstance()));
-        }else{
-            phoneMac = hexString2BytesOld(getSrcMacStr(LnledApp.getInstance()));
-        }
-        return phoneMac;
+    public static byte[] getSrcMac(Context context) {
+        return hexString2BytesNew(getSrcMacStr(context));
     }
 
     /**
      * 获取手机设备Mac地址字符串
+     *
      * @param context
      * @return
      */
@@ -115,6 +82,7 @@ public class DeviceUtils {
 
     /**
      * 获取被连接网络Mac地址字符串
+     *
      * @param context
      * @return
      */
@@ -127,6 +95,7 @@ public class DeviceUtils {
 
     /**
      * 获取网关密码
+     *
      * @param context
      * @return
      */
@@ -135,6 +104,10 @@ public class DeviceUtils {
         return pwd.getBytes();
     }
 
+    /**
+     * @param context
+     * @return
+     */
     public static int getWidth(Context context) {
         if (WIDTH == 0) {
             WIDTH = context.getResources().getDisplayMetrics().widthPixels;
@@ -142,6 +115,10 @@ public class DeviceUtils {
         return WIDTH;
     }
 
+    /**
+     * @param context
+     * @return
+     */
     public static int getHeight(Context context) {
         if (HEIGHT == 0) {
             HEIGHT = context.getResources().getDisplayMetrics().heightPixels;
@@ -149,6 +126,10 @@ public class DeviceUtils {
         return HEIGHT;
     }
 
+    /**
+     * @param context
+     * @return
+     */
     public static float getDensity(Context context) {
         if (DENSITY == 0) {
             DENSITY = context.getResources().getDisplayMetrics().density;
@@ -156,18 +137,37 @@ public class DeviceUtils {
         return DENSITY;
     }
 
+    /**
+     * @param context
+     * @param dpValue
+     * @return
+     */
     public static int dip2px(Context context, float dpValue) {
         return (int) (dpValue * getDensity(context) + 0.5f);
     }
 
+    /**
+     * @param context
+     * @param pxValue
+     * @return
+     */
     public static int px2dip(Context context, float pxValue) {
         return (int) (pxValue / getDensity(context) + 0.5f);
     }
 
+    /**
+     * @param context
+     * @param spValue
+     * @return
+     */
     public static float sp2px(Context context, float spValue) {
         return spValue * getDensity(context) * 10.0f / 20.0f;
     }
 
+    /**
+     * @param drawable
+     * @return
+     */
     public static Bitmap drawableToBitmap(Drawable drawable) {
         int w = drawable.getIntrinsicWidth();
         int h = drawable.getIntrinsicHeight();
@@ -181,6 +181,12 @@ public class DeviceUtils {
 
     }
 
+    /**
+     * @param drawable
+     * @param w
+     * @param h
+     * @return
+     */
     public static Drawable zoomDrawable(Drawable drawable, int w, int h) {
         int width = drawable.getIntrinsicWidth();
         int height = drawable.getIntrinsicHeight();
@@ -197,6 +203,12 @@ public class DeviceUtils {
         return new BitmapDrawable(newbmp);
     }
 
+    /**
+     * @param drawable
+     * @param scale_x
+     * @param scale_y
+     * @return
+     */
     public static Drawable zoomDrawableByScale(Drawable drawable, float scale_x, float scale_y) {
         int width = drawable.getIntrinsicWidth();
         int height = drawable.getIntrinsicHeight();
@@ -209,6 +221,9 @@ public class DeviceUtils {
 
     /**
      * 获取当前应用的版本名："1.0"
+     *
+     * @param context
+     * @return
      */
     public static String getVersionName(Context context) {
         try {
@@ -225,6 +240,9 @@ public class DeviceUtils {
 
     /**
      * 获取当前应用的版本号：1
+     *
+     * @param context
+     * @return
      */
     public static int getVersionCode(Context context) {
         try {
@@ -240,7 +258,12 @@ public class DeviceUtils {
         }
     }
 
-    /** 获取屏幕三分之一高度 */
+    /**
+     * 获取屏幕三分之一高度
+     *
+     * @param context
+     * @return
+     */
     public static int getOneThirdsWidth(Context context) {
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -249,7 +272,12 @@ public class DeviceUtils {
         return mWidth / 3;
     }
 
-    /** 获取屏幕三分之二宽度 */
+    /**
+     * 获取屏幕三分之二宽度
+     *
+     * @param context
+     * @return
+     */
     public static int getTwoThirdsWidth(Context context) {
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -258,7 +286,12 @@ public class DeviceUtils {
         return mWidth * 2 / 3;
     }
 
-    /** 获取屏幕五分之四宽度 */
+    /**
+     * 获取屏幕五分之四宽度
+     *
+     * @param context
+     * @return
+     */
     public static int getFourFifthsWidth(Context context) {
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -267,7 +300,12 @@ public class DeviceUtils {
         return mWidth * 4 / 5;
     }
 
-    /** 获取屏幕五分之四高度 */
+    /**
+     * 获取屏幕五分之四高度
+     *
+     * @param context
+     * @return
+     */
     public static int getFourFifthsHeight(Context context) {
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -276,7 +314,12 @@ public class DeviceUtils {
         return mHeight * 4 / 5;
     }
 
-    /** 获取屏幕三分之二高度 */
+    /**
+     * 获取屏幕三分之二高度
+     *
+     * @param context
+     * @return
+     */
     public static int getTwoThirdsHeight(Context context) {
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -285,7 +328,12 @@ public class DeviceUtils {
         return mHeight * 2 / 3;
     }
 
-    /** 获取屏幕三分之一高度 */
+    /**
+     * 获取屏幕三分之一高度
+     *
+     * @param context
+     * @return
+     */
     public static int getOneThirdsHeight(Context context) {
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);

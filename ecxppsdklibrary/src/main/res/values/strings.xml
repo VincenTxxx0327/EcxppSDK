@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="GatewayPsw">GatewayPsw</string>
+    <string name="app_name">千旸科技SDK</string>
+
+    <string name="tips">提示</string>
+
+</resources>

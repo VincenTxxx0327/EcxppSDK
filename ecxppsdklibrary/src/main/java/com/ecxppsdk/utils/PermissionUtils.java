@@ -7,8 +7,6 @@ import android.os.Build;
 
 import com.ecxppsdk.easypermissions.EasyPermissions;
 
-import org.xutils.common.util.LogUtil;
-
 
 /**
  * Author: Wh1te
@@ -48,7 +46,6 @@ public class PermissionUtils {
 
     public static int hasCameraPermission(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            LogUtil.i("6.0:" + Build.VERSION.SDK_INT);
             return EasyPermissions.hasPermissions(context, Manifest.permission.CAMERA) ? AFTER_M_SUCCESS : AFTER_M_FAILURE;
         } else {
             return isCameraCanUse() ? BEFORE_M_SUCCESS : BEFORE_M_FAILURE;

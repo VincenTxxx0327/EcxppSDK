@@ -107,7 +107,7 @@ public class InstructionService extends Service {
      * 开启服务线程
      */
     private void startServiceThread() {
-        mIP = DeviceUtils.getIP(instance.getApplicationContext(), connectServer);
+        mIP = DeviceUtils.getIP(instance.getApplicationContext());
         Log.d("============MSG", "startServiceThread   IP=" + mIP + "  connectServer:"+connectServer);
         mServiceThread = new ServiceThread();
         mServiceThread.start();
