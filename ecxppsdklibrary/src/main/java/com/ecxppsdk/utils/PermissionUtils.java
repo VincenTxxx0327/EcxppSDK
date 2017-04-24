@@ -9,10 +9,11 @@ import com.ecxppsdk.easypermissions.EasyPermissions;
 
 
 /**
- * Author: Wh1te
- * Date: 2016/10/14
+ * Author: VincenT
+ * Date: 2017/4/24 14:38
+ * Contact:qq 328551489
+ * Purpose:权限工具类
  */
-
 public class PermissionUtils {
     /**
      * 判断摄像头是否可用

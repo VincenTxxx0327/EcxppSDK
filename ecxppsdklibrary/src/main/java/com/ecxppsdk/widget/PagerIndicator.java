@@ -10,8 +10,10 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * @author VincenT
- *
+ * Author: VincenT
+ * Date: 2017/4/24 16:38
+ * Contact:qq 328551489
+ * Purpose:页面切换指示器
  */
 public class PagerIndicator extends View {
 	/**空心圆左边位置及两圆心距离*/

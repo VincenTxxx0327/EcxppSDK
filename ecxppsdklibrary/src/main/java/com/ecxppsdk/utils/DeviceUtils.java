@@ -23,7 +23,10 @@ import static com.ecxppsdk.utils.ConversionUtils.hexString2BytesNew;
 
 
 /**
- * Created by zhen on 2016/8/16.
+ * Author: VincenT
+ * Date: 2017/4/24 16:38
+ * Contact:qq 328551489
+ * Purpose:设备参数获取工具
  */
 public class DeviceUtils {
     private static int WIDTH;

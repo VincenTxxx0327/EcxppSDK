@@ -1,7 +1,10 @@
 package com.ecxppsdk.event;
 
 /**
- * Created by zhen on 2016/8/29.
+ * Author: VincenT
+ * Date: 2017/4/23 16:38
+ * Contact:qq 328551489
+ * Purpose:网络事务反馈
  */
 public class NetworkEvent {
 

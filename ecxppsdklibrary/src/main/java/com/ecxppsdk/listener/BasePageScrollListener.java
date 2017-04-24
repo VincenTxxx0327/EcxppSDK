@@ -8,10 +8,11 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * 实现RecycleView分页滚动的工具类
- * Created by zhuguohui on 2016/11/10.
+ * Author: VincenT
+ * Date: 2017/4/24 16:38
+ * Contact:qq 328551489
+ * Purpose:实现RecycleView分页滚动的工具类
  */
-
 public class BasePageScrollListener {
 
     RecyclerView mRecyclerView = null;

@@ -1,8 +1,10 @@
 package com.ecxppsdk.control;
 
 /**
- * Created by uen on 2016/9/4.
- * 反馈信息、数据 筛选器
+ * Author: VincenT
+ * Date: 2017/4/24 10:23
+ * Contact:qq 328551489
+ * Purpose:反馈信息、数据 筛选器
  */
 public class FeedbackDataFilter {
 

@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import java.util.List;
 
 /**
- * Author: Wh1te
- * Date: 2016/9/19
+ * Author: VincenT
+ * Date: 2017/4/24 14:38
+ * Contact:qq 328551489
+ * Purpose:基本适配器
  */
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
     protected List<T> mData;

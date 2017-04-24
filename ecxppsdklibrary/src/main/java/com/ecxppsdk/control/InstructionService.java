@@ -20,6 +20,12 @@ import java.net.Socket;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Author: VincenT
+ * Date: 2017/4/24 14:38
+ * Contact:qq 328551489
+ * Purpose:基本连接服务
+ */
 public class InstructionService extends Service {
 
     private String mIP;

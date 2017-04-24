@@ -3,7 +3,10 @@ package com.ecxppsdk.utils;
 import java.util.Random;
 
 /**
- * Created by zhen on 2016/9/7.
+ * Author: VincenT
+ * Date: 2017/4/24 16:38
+ * Contact:qq 328551489
+ * Purpose:字符串转换工具
  */
 public class ConversionUtils {
 

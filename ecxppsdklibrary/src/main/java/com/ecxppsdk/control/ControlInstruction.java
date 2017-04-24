@@ -19,8 +19,10 @@ import static com.ecxppsdk.utils.ConversionUtils.integer2byteBack;
 import static com.ecxppsdk.utils.ConversionUtils.integer2byteFront;
 
 /**
- * Created by uen on 2016/9/4.
- * <p>设备控制指令</p>
+ * Author: VincenT
+ * Date: 2017/4/24 10:43
+ * Contact:qq 328551489
+ * Purpose:设备控制指令
  */
 public class ControlInstruction {
 

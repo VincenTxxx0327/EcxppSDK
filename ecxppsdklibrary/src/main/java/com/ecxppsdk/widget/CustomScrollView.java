@@ -12,7 +12,10 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
 /**
- * @author VincenT Li 弹性ScrollView
+ * Author: VincenT
+ * Date: 2017/4/24 16:38
+ * Contact:qq 328551489
+ * Purpose:弹性ScrollView
  */
 @SuppressLint("HandlerLeak")
 public class CustomScrollView extends ScrollView {

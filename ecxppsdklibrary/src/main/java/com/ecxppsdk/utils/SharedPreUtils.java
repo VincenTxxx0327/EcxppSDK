@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by zhen on 2016/8/26.
+ * Author: VincenT
+ * Date: 2017/4/24 16:38
+ * Contact:qq 328551489
+ * Purpose:SharedPreferences工具类
  */
 public class SharedPreUtils {
     public static final String PREFERENCE_NAME = "config";

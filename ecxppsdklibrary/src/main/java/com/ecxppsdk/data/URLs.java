@@ -1,9 +1,11 @@
 package com.ecxppsdk.data;
 
 /**
- * Created by xian on 2016/8/22.
+ * Author: VincenT
+ * Date: 2017/4/24 14:38
+ * Contact:qq 328551489
+ * Purpose:常用链接及接口
  */
-
 public class URLs {
 
     //云端链接

@@ -5,8 +5,10 @@ import com.ecxppsdk.utils.ConversionUtils;
 import java.util.Arrays;
 
 /**
- * Created by VincenT on 2016/11/15.
- * <p>连接、控制等基础指令</p>
+ * Author: VincenT
+ * Date: 2017/4/24 10:28
+ * Contact:qq 328551489
+ * Purpose:连接、控制等基础指令
  */
 public class Instruction {
 
