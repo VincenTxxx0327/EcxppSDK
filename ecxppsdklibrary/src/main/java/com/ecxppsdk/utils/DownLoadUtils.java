@@ -5,7 +5,7 @@ import android.content.Context;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
-import com.lnlednewversion.R;
+import com.ecxppsdk.R;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -19,7 +19,7 @@ import java.math.BigDecimal;
  * Date: 2016/9/21
  */
 
-public class DownLoadUtil {
+public class DownLoadUtils {
 
     public static void download(String url, final String path, final Context context) {
         final NotificationManager mNotifyManager =
@@ -28,7 +28,7 @@ public class DownLoadUtil {
         mBuilder.setContentTitle("版本更新")
                 .setContentText("正在下载...")
                 .setContentInfo("0%")
-                .setSmallIcon(R.mipmap.icon_logo_lnled);
+                .setSmallIcon(R.mipmap.icon_logo_public);
 
         RequestParams params = new RequestParams(url);
         //设置断点续传
