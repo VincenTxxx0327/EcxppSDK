@@ -1,13 +1,13 @@
 <resources>
 
-    <string name="GatewayPsw">GatewayPsw</string>
     <string name="app_name">千旸科技SDK</string>
 
-    <string name="tips">提示</string>
+    <string name="dialogText_tips">提示</string>
     <string name="dialogText_cancel">取消</string>
     <string name="dialogText_confirm">确定</string>
-    <string name="dialogText_tips">提示</string>
     <string name="dialogText_setting">设置</string>
-    <string name="toastText_getAuthorizationFailed">获取权限失败</string>
     <string name="dialogText_needAuthorization">应用程序所需权限已被禁用，这可能会影响程序的正常使用，是否前往设置界面授予权限</string>
+
+    <string name="toastText_wifi_disconnect">当前未连接WiFi</string>
+    <string name="toastText_getAuthorizationFailed">获取权限失败</string>
 </resources>

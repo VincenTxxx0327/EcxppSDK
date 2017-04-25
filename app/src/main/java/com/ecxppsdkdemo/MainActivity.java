@@ -42,7 +42,7 @@ public class MainActivity extends MVPActivity<MainContract.Presenter> implements
         switch (hasCameraPermission) {
             case PermissionUtils.AFTER_M_FAILURE:
                 // 请求摄像头权限
-                EasyPermissions.requestPermissions(this, "请允许应用程序获取摄像头权限以使用扫描功能", Constant.RC_CAMERA_PERM, Manifest.permission.CAMERA);
+                EasyPermissions.requestPermissions(this, "请允许应用程序获取摄像头权限以使用扫描功能", Constant.RC_PERM_CAMERA, Manifest.permission.CAMERA);
                 break;
             case PermissionUtils.BEFORE_M_FAILURE:
                 openSystemSettingUI(this);

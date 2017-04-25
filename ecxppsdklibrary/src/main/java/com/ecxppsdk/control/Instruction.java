@@ -4,6 +4,7 @@ import com.ecxppsdk.utils.ConversionUtils;
 
 import java.util.Arrays;
 
+
 /**
  * Author: VincenT
  * Date: 2017/4/24 10:28
@@ -32,7 +33,7 @@ public class Instruction {
     public static String ip = null;
     public static byte[] src_Mac;
     public static byte[] dst_Mac;
-    public static byte[] passwd;
+    public static byte[] password;
     public static byte[] prea_cmd = {0x0A};//0A前缀，用于用户登录、密码修改、转发串口指令、用户退出、无线上网配置（局域网指令）
     public static byte[] pred_cmd = {0x0D};//0D前缀，用于转发指令补充链接
     public static byte[] preb_cmd = {0x0B};//0D前缀，用于转发指令补充链接
@@ -121,10 +122,10 @@ public class Instruction {
             totalLength += array.length;
         }
         byte[] result = Arrays.copyOf(first, totalLength);
-        int offset = first.length;
+        int arrayOffset = first.length;
         for (byte[] array : rest) {
-            System.arraycopy(array, 0, result, offset, array.length);
-            offset += array.length;
+            System.arraycopy(array, 0, result, arrayOffset, array.length);
+            arrayOffset += array.length;
         }
         return result;
     }
@@ -144,10 +145,34 @@ public class Instruction {
         }
         byte[] result = Arrays.copyOf(first, totalLength);
         System.arraycopy(second, 0, result, first.length, second.length);
-        int offset = first.length + second.length;
+        int arrayOffset = first.length + second.length;
         for (byte[] array : rest) {
-            System.arraycopy(array, 0, result, offset, array.length);
-            offset += array.length;
+            System.arraycopy(array, 0, result, arrayOffset, array.length);
+            arrayOffset += array.length;
+        }
+        return result;
+    }
+
+    /**
+     * 指令拼接
+     *
+     * @param first
+     * @param second
+     * @param rest
+     * @return
+     */
+    public static byte[] concatAllThird(byte[] first, byte[] second, byte[] third, byte[]... rest) {
+        int totalLength = first.length + second.length + third.length;
+        for (byte[] array : rest) {
+            totalLength += array.length;
+        }
+        byte[] result = Arrays.copyOf(first, totalLength);
+        System.arraycopy(second, 0, result, first.length, second.length);
+        System.arraycopy(third, 0, result, first.length + second.length, third.length);
+        int arrayOffset = first.length + second.length + third.length;
+        for (byte[] array : rest) {
+            System.arraycopy(array, 0, result, arrayOffset, array.length);
+            arrayOffset += array.length;
         }
         return result;
     }

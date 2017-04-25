@@ -309,7 +309,7 @@ public class InstructionService extends Service {
      */
     public static void sendInstruction(byte[] instruction, boolean isLimitTime) {
         try {
-            if (System.currentTimeMillis() - lastControlTime < Constant.TIME_LIMIT && isLimitTime) {//当前操作时间与上次操作时间小于300毫秒，提示操作太频繁
+            if (System.currentTimeMillis() - lastControlTime < Constant.TIME_LIMIT300 && isLimitTime) {//当前操作时间与上次操作时间小于300毫秒，提示操作太频繁
                 EventBus.getDefault().post(new NetworkEvent(NetworkEvent.TOOSOON, "too soon"));
                 return;
             }

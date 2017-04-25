@@ -132,7 +132,7 @@ public class EasyPermissions {
             }
 
             AlertDialog dialog = new AlertDialog.Builder(activity)
-                    .setTitle(R.string.tips)
+                    .setTitle(R.string.dialogText_tips)
                     .setMessage(rationale)
                     .setPositiveButton(positiveButton, new DialogInterface.OnClickListener() {
                         @Override

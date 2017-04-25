@@ -103,7 +103,7 @@ public class DeviceUtils {
      * @return
      */
     public static byte[] getPassword(Context context) {
-        String pwd = SharedPreUtils.getString(context, context.getString(R.string.GatewayPsw), "00000000");
+        String pwd = SharedPreUtils.getString(context, Constant.GATEWAY_PSW, "00000000");
         return pwd.getBytes();
     }
 
