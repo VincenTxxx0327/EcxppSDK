@@ -532,7 +532,7 @@ public class ControlInstruction {
      */
     public static void setAlarm(String id, int hour, int min, int red, int blue, int white, int infrared, int ultraviolet) {
         byte[] id_cmd = hexString2BytesData(id);//因控制板顺序是红白蓝 故此处顺序如此
-        byte[] ctr_cmd = concatAllFirst(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min, (byte) red, (byte) white, (byte) blue, (byte) infrared, (byte) ultraviolet});
+        byte[] ctr_cmd = concatAllFirst(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min, (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
         byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
@@ -553,7 +553,7 @@ public class ControlInstruction {
      */
     public static void setAlarm(String id, int hour, int min, int red, int blue, int white, int infrared, int ultraviolet, boolean isLimitTime) {
         byte[] id_cmd = hexString2BytesData(id);//因控制板顺序是红白蓝 故此处顺序如此
-        byte[] ctr_cmd = concatAllFirst(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min, (byte) red, (byte) white, (byte) blue, (byte) infrared, (byte) ultraviolet});
+        byte[] ctr_cmd = concatAllFirst(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min, (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
         byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
@@ -662,7 +662,7 @@ public class ControlInstruction {
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr08_cmd, new byte[]{
                 integer2byteFront(minLumen), integer2byteBack(minLumen),
                 integer2byteFront(maxLumen), integer2byteBack(maxLumen),
-                (byte) red, (byte) white, (byte) blue, (byte) infrared, (byte) ultraviolet});//因控制板顺序是红白蓝 故此处顺序如此
+                (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});//因控制板顺序是红白蓝 故此处顺序如此
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
         byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
@@ -687,7 +687,7 @@ public class ControlInstruction {
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr08_cmd, new byte[]{
                 integer2byteFront(minLumen), integer2byteBack(minLumen),
                 integer2byteFront(maxLumen), integer2byteBack(maxLumen),
-                (byte) red, (byte) white, (byte) blue, (byte) infrared, (byte) ultraviolet});//因控制板顺序是红白蓝 故此处顺序如此
+                (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});//因控制板顺序是红白蓝 故此处顺序如此
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
         byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
