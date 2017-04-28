@@ -1,5 +1,7 @@
 package com.ecxppsdk.control;
 
+import android.support.annotation.Nullable;
+
 import static com.ecxppsdk.control.Instruction.concatAllFirst;
 import static com.ecxppsdk.control.Instruction.concatAllSecond;
 import static com.ecxppsdk.control.Instruction.concatAllThird;
@@ -30,9 +32,9 @@ public class ControlInstruction {
     /**
      * 取消设备时控数值
      *
-     * @param id 设备id
+     * @param id   设备id
      * @param hour 设备当前定时小时
-     * @param min 设备当前定时分钟
+     * @param min  设备当前定时分钟
      */
     public static void cancelAlarm(String id, int hour, int min) {
         byte[] id_cmd = hexString2BytesData(id);
@@ -42,12 +44,13 @@ public class ControlInstruction {
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
+
     /**
      * 取消设备时控数值
      *
-     * @param id 设备id
-     * @param hour 设备当前定时小时
-     * @param min 设备当前定时分钟
+     * @param id          设备id
+     * @param hour        设备当前定时小时
+     * @param min         设备当前定时分钟
      * @param isLimitTime 是否限制频繁操作
      */
     public static void cancelAlarm(String id, int hour, int min, boolean isLimitTime) {
@@ -76,7 +79,7 @@ public class ControlInstruction {
     /**
      * 清除设备群组id
      *
-     * @param soleId 组id
+     * @param soleId      组id
      * @param isLimitTime 是否限制频繁操作
      */
     public static void cancelLightGroup(String soleId, boolean isLimitTime) {
@@ -105,7 +108,7 @@ public class ControlInstruction {
     /**
      * 清除光控数值
      *
-     * @param id 设备id
+     * @param id          设备id
      * @param isLimitTime 是否限制频繁操作
      */
     public static void cancelLumen(String id, boolean isLimitTime) {
@@ -120,11 +123,11 @@ public class ControlInstruction {
     /**
      * 改变设备数值
      *
-     * @param id 设备id
-     * @param code_cmd 01：单个设备 06：群组设备 可为null
+     * @param id               设备id
+     * @param code_cmd         01：单个设备 06：群组设备 可为null
      * @param multiInstruction 多路指令
      */
-    public static void changeLight(String id, byte[] code_cmd, byte[]... multiInstruction) {
+    public static void changeLight(String id, @Nullable byte[] code_cmd, byte[]... multiInstruction) {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd;
         if (code_cmd == null) {
@@ -141,12 +144,12 @@ public class ControlInstruction {
     /**
      * 改变设备数值
      *
-     * @param id 设备id
-     * @param code_cmd 01：单个设备 06：群组设备 可为null
-     * @param isLimitTime 是否限制频繁操作
+     * @param id               设备id
+     * @param code_cmd         01：单个设备 06：群组设备 可为null
+     * @param isLimitTime      是否限制频繁操作
      * @param multiInstruction 多路指令
      */
-    public static void changeLight(String id, byte[] code_cmd, boolean isLimitTime, byte[]... multiInstruction) {
+    public static void changeLight(String id, @Nullable byte[] code_cmd, boolean isLimitTime, byte[]... multiInstruction) {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd;
         if (code_cmd == null) {
@@ -163,23 +166,23 @@ public class ControlInstruction {
     /**
      * 改变设备数值
      *
-     * @param id 设备id
+     * @param id       设备id
      * @param code_cmd 01：单个设备 06：群组设备 可为null
-     * @param isOpen 是否开关
+     * @param isOpen   是否开关
      */
-    public static void changeLight(String id, byte[] code_cmd, boolean isOpen) {
+    public static void changeLight(String id, @Nullable byte[] code_cmd, boolean isOpen) {
         changeLight(id, code_cmd, isOpen, 8);
     }
 
     /**
      * 改变设备数值
      *
-     * @param id 设备id
-     * @param code_cmd 01：单个设备 06：群组设备 可为null
-     * @param isOpen 是否开关
+     * @param id          设备id
+     * @param code_cmd    01：单个设备 06：群组设备 可为null
+     * @param isOpen      是否开关
      * @param isLimitTime 是否限制频繁操作
      */
-    public static void changeLight(String id, byte[] code_cmd, boolean isOpen, boolean isLimitTime) {
+    public static void changeLight(String id, @Nullable byte[] code_cmd, boolean isOpen, boolean isLimitTime) {
         changeLight(id, code_cmd, isOpen, 8, isLimitTime);
     }
 
@@ -191,12 +194,12 @@ public class ControlInstruction {
      * @param isOpen   开还是关
      * @param roadNum  控制路数
      */
-    public static void changeLight(String id, byte[] code_cmd, boolean isOpen, int roadNum) {
+    public static void changeLight(String id, @Nullable byte[] code_cmd, boolean isOpen, int roadNum) {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
             if (isOpen) {
-                multiInstruction[i] = (byte) 0xFF;
+                multiInstruction[i] = (byte) 0x32;
             } else {
                 multiInstruction[i] = (byte) 0x00;
             }
@@ -216,21 +219,74 @@ public class ControlInstruction {
     /**
      * 改变设备数值
      *
-     * @param id       设备id
-     * @param code_cmd 01：单个设备 06：群组设备 可为null
-     * @param isOpen   开还是关
-     * @param roadNum  控制路数
+     * @param id          设备id
+     * @param code_cmd    01：单个设备 06：群组设备 可为null
+     * @param isOpen      开还是关
+     * @param roadNum     控制路数
      * @param isLimitTime 是否限制频繁操作
      */
-    public static void changeLight(String id, byte[] code_cmd, boolean isOpen, int roadNum, boolean isLimitTime) {
+    public static void changeLight(String id, @Nullable byte[] code_cmd, boolean isOpen, int roadNum, boolean isLimitTime) {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
             if (isOpen) {
-                multiInstruction[i] = (byte) 0xFF;
+                multiInstruction[i] = (byte) 0x32;
             } else {
                 multiInstruction[i] = (byte) 0x00;
             }
+        }
+        byte[] ctr_cmd;
+        if (code_cmd == null) {
+            ctr_cmd = concatAllFirst(id_cmd, multiInstruction);
+        } else {
+            ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
+        }
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        InstructionService.sendInstruction(data, isLimitTime);
+    }
+
+    /**
+     * 改变设备数值
+     *
+     * @param id        设备id
+     * @param code_cmd  01：单个设备 06：群组设备 可为null
+     * @param multi_cmd 多路发送单独数值
+     * @param roadNum   控制路数
+     */
+    public static void changeLight(String id, @Nullable byte[] code_cmd, byte multi_cmd, int roadNum) {
+        byte[] id_cmd = hexString2BytesData(id);
+        byte[] multiInstruction = new byte[roadNum];
+        for (int i = 0; i < multiInstruction.length; i++) {
+            multiInstruction[i] = multi_cmd;
+        }
+        byte[] ctr_cmd;
+        if (code_cmd == null) {
+            ctr_cmd = concatAllFirst(id_cmd, multiInstruction);
+        } else {
+            ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
+        }
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        InstructionService.sendInstruction(data, true);
+    }
+
+    /**
+     * 改变设备数值
+     *
+     * @param id          设备id
+     * @param code_cmd    01：单个设备 06：群组设备 可为null
+     * @param multi_cmd   多路发送单独数值
+     * @param roadNum     控制路数
+     * @param isLimitTime 是否限制频繁操作
+     */
+    public static void changeLight(String id, @Nullable byte[] code_cmd, byte multi_cmd, int roadNum, boolean isLimitTime) {
+        byte[] id_cmd = hexString2BytesData(id);
+        byte[] multiInstruction = new byte[roadNum];
+        for (int i = 0; i < multiInstruction.length; i++) {
+            multiInstruction[i] = multi_cmd;
         }
         byte[] ctr_cmd;
         if (code_cmd == null) {
@@ -247,7 +303,7 @@ public class ControlInstruction {
     /**
      * 改变光控数值
      *
-     * @param id 设备id
+     * @param id     设备id
      * @param isOpen 是否开关
      */
     public static void changeLumen(String id, boolean isOpen) {
@@ -267,8 +323,8 @@ public class ControlInstruction {
     /**
      * 改变光控数值
      *
-     * @param id 设备id
-     * @param isOpen 是否开关
+     * @param id          设备id
+     * @param isOpen      是否开关
      * @param isLimitTime 是否限制频繁操作
      */
     public static void changeLumen(String id, boolean isOpen, boolean isLimitTime) {
@@ -288,32 +344,32 @@ public class ControlInstruction {
     /**
      * 关闭设备
      *
-     * @param id 设备id
+     * @param id       设备id
      * @param code_cmd 01：单个设备 06：群组设备 可为null
      */
-    public static void closeLight(String id, byte[] code_cmd) {
+    public static void closeLight(String id, @Nullable byte[] code_cmd) {
         closeLight(id, code_cmd, 8);
     }
 
     /**
      * 关闭设备
      *
-     * @param id 设备id
-     * @param code_cmd 01：单个设备 06：群组设备 可为null
+     * @param id          设备id
+     * @param code_cmd    01：单个设备 06：群组设备 可为null
      * @param isLimitTime 是否限制频繁操作
      */
-    public static void closeLight(String id, byte[] code_cmd, boolean isLimitTime) {
+    public static void closeLight(String id, @Nullable byte[] code_cmd, boolean isLimitTime) {
         closeLight(id, code_cmd, 8, isLimitTime);
     }
 
     /**
      * 关闭设备
      *
-     * @param id 设备id
+     * @param id       设备id
      * @param code_cmd 01：单个设备 06：群组设备 可为null
      * @param roadNum  控制路数
      */
-    public static void closeLight(String id, byte[] code_cmd, int roadNum) {
+    public static void closeLight(String id, @Nullable byte[] code_cmd, int roadNum) {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
@@ -334,11 +390,11 @@ public class ControlInstruction {
     /**
      * 关闭设备
      *
-     * @param id 设备id
+     * @param id       设备id
      * @param code_cmd 01：单个设备 06：群组设备 可为null
      * @param roadNum  控制路数
      */
-    public static void closeLight(String id, byte[] code_cmd, int roadNum, boolean isLimitTime) {
+    public static void closeLight(String id, @Nullable byte[] code_cmd, int roadNum, boolean isLimitTime) {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
@@ -390,17 +446,18 @@ public class ControlInstruction {
      * @param id       设备id
      * @param code_cmd 01：单个设备 06：群组设备 可为null
      */
-    public static void openLight(String id, byte[] code_cmd) {
+    public static void openLight(String id, @Nullable byte[] code_cmd) {
         openLight(id, code_cmd, 8);
     }
+
     /**
      * 打开设备
      *
-     * @param id       设备id
-     * @param code_cmd 01：单个设备 06：群组设备 可为null
+     * @param id          设备id
+     * @param code_cmd    01：单个设备 06：群组设备 可为null
      * @param isLimitTime 是否限制频繁操作
      */
-    public static void openLight(String id, byte[] code_cmd, boolean isLimitTime) {
+    public static void openLight(String id, @Nullable byte[] code_cmd, boolean isLimitTime) {
         openLight(id, code_cmd, 8, isLimitTime);
     }
 
@@ -411,11 +468,11 @@ public class ControlInstruction {
      * @param code_cmd 01：单个设备 06：群组设备 可为null
      * @param roadNum  控制路数
      */
-    public static void openLight(String id, byte[] code_cmd, int roadNum) {
+    public static void openLight(String id, @Nullable byte[] code_cmd, int roadNum) {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
-            multiInstruction[i] = (byte) 0xFF;
+            multiInstruction[i] = (byte) 0x32;
         }
         byte[] ctr_cmd;
         if (code_cmd == null) {
@@ -432,16 +489,16 @@ public class ControlInstruction {
     /**
      * 打开设备
      *
-     * @param id       设备id
-     * @param code_cmd 01：单个设备 06：群组设备 可为null
-     * @param roadNum  控制路数
+     * @param id          设备id
+     * @param code_cmd    01：单个设备 06：群组设备 可为null
+     * @param roadNum     控制路数
      * @param isLimitTime 是否限制频繁操作
      */
-    public static void openLight(String id, byte[] code_cmd, int roadNum, boolean isLimitTime) {
+    public static void openLight(String id, @Nullable byte[] code_cmd, int roadNum, boolean isLimitTime) {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
-            multiInstruction[i] = (byte) 0xFF;
+            multiInstruction[i] = (byte) 0x32;
         }
         byte[] ctr_cmd;
         if (code_cmd == null) {
@@ -472,7 +529,7 @@ public class ControlInstruction {
     /**
      * 打开光控
      *
-     * @param id 设备id
+     * @param id          设备id
      * @param isLimitTime 是否限制频繁操作
      */
     public static void openLumen(String id, boolean isLimitTime) {
@@ -487,9 +544,9 @@ public class ControlInstruction {
     /**
      * 设置时控数值
      *
-     * @param id 设备id
-     * @param hour 当前小时
-     * @param min 当前分钟
+     * @param id               设备id
+     * @param hour             当前小时
+     * @param min              当前分钟
      * @param multiInstruction 多路指令
      */
     public static void setAlarm(String id, int hour, int min, byte[]... multiInstruction) {
@@ -504,10 +561,10 @@ public class ControlInstruction {
     /**
      * 设置时控数值
      *
-     * @param id 设备id
-     * @param hour 当前小时
-     * @param min 当前分钟
-     * @param isLimitTime 是否限制频繁操作
+     * @param id               设备id
+     * @param hour             当前小时
+     * @param min              当前分钟
+     * @param isLimitTime      是否限制频繁操作
      * @param multiInstruction 多路指令
      */
     public static void setAlarm(String id, int hour, int min, boolean isLimitTime, byte[]... multiInstruction) {
@@ -518,6 +575,7 @@ public class ControlInstruction {
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
+
     /**
      * 设置时控数值
      *
@@ -538,6 +596,7 @@ public class ControlInstruction {
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
+
     /**
      * 设置时控数值
      *
@@ -580,7 +639,7 @@ public class ControlInstruction {
     /**
      * 设置设备群组id
      *
-     * @param soleId 设备id
+     * @param soleId  设备id
      * @param groupId 组id
      */
     public static void setLightGroup(String soleId, String groupId) {
@@ -596,8 +655,8 @@ public class ControlInstruction {
     /**
      * 设置设备群组id
      *
-     * @param soleId 设备id
-     * @param groupId 组id
+     * @param soleId      设备id
+     * @param groupId     组id
      * @param isLimitTime 是否限制频繁操作
      */
     public static void setLightGroup(String soleId, String groupId, boolean isLimitTime) {
@@ -613,9 +672,9 @@ public class ControlInstruction {
     /**
      * 设置光控数值
      *
-     * @param deviceId 设备id
-     * @param minLumen 最小区间
-     * @param maxLumen 最大区间
+     * @param deviceId         设备id
+     * @param minLumen         最小区间
+     * @param maxLumen         最大区间
      * @param multiInstruction 多路指令
      */
     public static void setLumen(String deviceId, int minLumen, int maxLumen, byte[]... multiInstruction) {
@@ -630,10 +689,10 @@ public class ControlInstruction {
     /**
      * 设置光控数值
      *
-     * @param deviceId 设备id
-     * @param minLumen 最小区间
-     * @param maxLumen 最大区间
-     * @param isLimitTime 是否限制频繁操作
+     * @param deviceId         设备id
+     * @param minLumen         最小区间
+     * @param maxLumen         最大区间
+     * @param isLimitTime      是否限制频繁操作
      * @param multiInstruction 多路指令
      */
     public static void setLumen(String deviceId, int minLumen, int maxLumen, boolean isLimitTime, byte[]... multiInstruction) {
@@ -648,9 +707,9 @@ public class ControlInstruction {
     /**
      * 设置光控数值
      *
-     * @param deviceId 设备id
-     * @param minLumen 最小区间
-     * @param maxLumen 最大区间
+     * @param deviceId    设备id
+     * @param minLumen    最小区间
+     * @param maxLumen    最大区间
      * @param red         红光
      * @param blue        蓝光
      * @param white       白光
@@ -672,9 +731,9 @@ public class ControlInstruction {
     /**
      * 设置光控数值
      *
-     * @param deviceId 设备id
-     * @param minLumen 最小区间
-     * @param maxLumen 最大区间
+     * @param deviceId    设备id
+     * @param minLumen    最小区间
+     * @param maxLumen    最大区间
      * @param red         红光
      * @param blue        蓝光
      * @param white       白光
@@ -697,7 +756,7 @@ public class ControlInstruction {
     /**
      * 设置光控群组id
      *
-     * @param soleId 设备id
+     * @param soleId  设备id
      * @param groupId 组id
      */
     public static void setLumenGroup(String soleId, String groupId) {
@@ -714,8 +773,8 @@ public class ControlInstruction {
     /**
      * 设置光控群组id
      *
-     * @param soleId 设备id
-     * @param groupId 组id
+     * @param soleId      设备id
+     * @param groupId     组id
      * @param isLimitTime 是否限制频繁操作
      */
     public static void setLumenGroup(String soleId, String groupId, boolean isLimitTime) {
