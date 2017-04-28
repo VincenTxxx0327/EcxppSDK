@@ -32,6 +32,35 @@ public class ControlInstruction {
     /**
      * 取消设备时控数值
      *
+     * @param id 设备id
+     */
+    public static void cancelAlarm(String id) {
+        byte[] id_cmd = hexString2BytesData(id);
+        byte[] ctr_cmd = concatAllFirst(id_cmd, ctr03_cmd);
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        InstructionService.sendInstruction(data, true);
+    }
+
+    /**
+     * 取消设备时控数值
+     *
+     * @param id          设备id
+     * @param isLimitTime 是否限制频繁操作
+     */
+    public static void cancelAlarm(String id, boolean isLimitTime) {
+        byte[] id_cmd = hexString2BytesData(id);
+        byte[] ctr_cmd = concatAllFirst(id_cmd, ctr03_cmd);
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        InstructionService.sendInstruction(data, isLimitTime);
+    }
+
+    /**
+     * 取消设备时控数值
+     *
      * @param id   设备id
      * @param hour 设备当前定时小时
      * @param min  设备当前定时分钟
@@ -760,7 +789,6 @@ public class ControlInstruction {
      * @param groupId 组id
      */
     public static void setLumenGroup(String soleId, String groupId) {
-        ;
         byte[] sole_cmd = hexString2BytesData(soleId);
         byte[] group_cmd = hexString2BytesData(groupId);
         byte[] ctr_cmd = concatAllFirst(sole_cmd, ctr05_cmd, ctr01_cmd, group_cmd);
@@ -778,7 +806,6 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void setLumenGroup(String soleId, String groupId, boolean isLimitTime) {
-        ;
         byte[] sole_cmd = hexString2BytesData(soleId);
         byte[] group_cmd = hexString2BytesData(groupId);
         byte[] ctr_cmd = concatAllFirst(sole_cmd, ctr05_cmd, ctr01_cmd, group_cmd);
