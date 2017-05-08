@@ -43,37 +43,37 @@ public class FeedbackDataFilter {
                 break;
 //            case OLD_GATEWAY_OFFLINE://旧网关则为网关未找到
             case NEW_OPERATE_FEEDBACK://新网关则为操作返回
-                if (feedback[13] == 0x01) {//用户登录
+                if (feedback[0] == Instruction.preb_cmd[0] && feedback[13] == 0x01) {//用户登录
                     if (feedback[feedback.length - 1] == 0x01) {//操作成功
                         back = LOGIN_SUCCESS;
                     } else if (feedback[feedback.length - 1] == 0x00) {//操作失败
                         back = LOGIN_FAILED;
                     }
-                } else if (feedback[0] == Instruction.pref_cmd[0] && feedback[13] == 0x02) {//注册APP结点，心跳包
+                } else if (feedback[0] == Instruction.pref_cmd[0] && feedback[13] == 0x02) {//注册APP结点，心跳包 0f 1c887951ea46 f409d861185f 02
                     if (feedback[feedback.length - 1] == 0x01) {//操作成功
                         back = OPERATE_SUCCESS;
                     } else if (feedback[feedback.length - 1] == 0x00) {//操作失败
                         back = OPERATE_FAILED;
                     }
-                } else if (feedback[0] == Instruction.prea_cmd[0] && feedback[13] == 0x02) {//转发串口指令,
+                } else if (feedback[0] == Instruction.preb_cmd[0] && feedback[13] == 0x02) {//转发串口指令 0b f409d861185f 1c887951ea46 02 0c 0c d48a74ee28 06 0000000000
+                    if (feedback[14] != 0x00) {//操作成功
+                        back = OPERATE_SUCCESS;
+                    } else {//操作失败
+                        back = OPERATE_FAILED;
+                    }
+                } else if (feedback[0] == Instruction.preb_cmd[0] && feedback[13] == 0x03) {//用户登录 0b f409d861185f 1c887951ea46 01 01 01
                     if (feedback[feedback.length - 1] == 0x01) {//操作成功
                         back = OPERATE_SUCCESS;
                     } else if (feedback[feedback.length - 1] == 0x00) {//操作失败
                         back = OPERATE_FAILED;
                     }
-                } else if (feedback[13] == 0x03) {//用户登录
+                } else if (feedback[0] == Instruction.preb_cmd[0] && feedback[13] == 0x04) {//用户退出
                     if (feedback[feedback.length - 1] == 0x01) {//操作成功
                         back = OPERATE_SUCCESS;
                     } else if (feedback[feedback.length - 1] == 0x00) {//操作失败
                         back = OPERATE_FAILED;
                     }
-                } else if (feedback[13] == 0x04) {//用户退出
-                    if (feedback[feedback.length - 1] == 0x01) {//操作成功
-                        back = OPERATE_SUCCESS;
-                    } else if (feedback[feedback.length - 1] == 0x00) {//操作失败
-                        back = OPERATE_FAILED;
-                    }
-                } else if (feedback[13] == 0x05) {//无线上网配置（局域网指令）
+                } else if (feedback[0] == Instruction.preb_cmd[0] && feedback[13] == 0x05) {//无线上网配置（局域网指令） 0b f409d861185f 1c887951ea46 05 01 01
                     if (feedback[feedback.length - 1] == 0x01) {//操作成功
                         back = OPERATE_SUCCESS;
                     } else if (feedback[feedback.length - 1] == 0x00) {//操作失败

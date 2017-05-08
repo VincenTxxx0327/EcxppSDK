@@ -102,7 +102,7 @@ public class InstructionService extends Service {
         Log.i("============MSG", "restartService");
         cancelHeartBeatThread();
         cancelServiceThread();
-        if(mHeartTimer == null) {
+        if (mHeartTimer == null) {
             mHeartTimer = new Timer();
         }
         startServiceThread();
@@ -114,7 +114,7 @@ public class InstructionService extends Service {
      */
     private void startServiceThread() {
         mIP = DeviceUtils.getIP(instance.getApplicationContext());
-        Log.d("============MSG", "startServiceThread   IP=" + mIP + "  connectServer:"+connectServer);
+        Log.d("============MSG", "startServiceThread   IP=" + mIP + "  connectServer:" + connectServer);
         mServiceThread = new ServiceThread();
         mServiceThread.start();
     }
@@ -164,6 +164,7 @@ public class InstructionService extends Service {
             mHeartTimer = null;
         }
     }
+
     /**
      * 关闭套接字
      */

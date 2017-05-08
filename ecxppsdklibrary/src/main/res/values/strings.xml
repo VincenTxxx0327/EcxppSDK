@@ -10,4 +10,12 @@
 
     <string name="toastText_wifi_disconnect">当前未连接WiFi</string>
     <string name="toastText_getAuthorizationFailed">获取权限失败</string>
+
+    <string name="base_light">灯具</string>
+    <string name="red_light">红光</string>
+    <string name="blue_light">蓝光</string>
+    <string name="white_light">白光</string>
+    <string name="infrared_light">红外线</string>
+    <string name="ultraviolet_light">紫光</string>
+
 </resources>
