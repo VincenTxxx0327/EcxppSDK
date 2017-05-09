@@ -38,8 +38,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr03_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -53,8 +52,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr03_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -69,8 +67,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr03_cmd, new byte[]{(byte) hour, (byte) min});
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -86,8 +83,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr03_cmd, new byte[]{(byte) hour, (byte) min});
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -100,8 +96,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(soleId);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr05_cmd, ctr01_cmd, new byte[]{(byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF});
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -115,8 +110,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(soleId);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr05_cmd, ctr01_cmd, new byte[]{(byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF});
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -129,8 +123,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr03_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -144,8 +137,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr03_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -165,8 +157,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -187,8 +178,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -240,8 +230,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -271,8 +260,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -297,8 +285,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -324,8 +311,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -344,8 +330,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr02_cmd);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -365,8 +350,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr02_cmd);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -411,8 +395,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -436,8 +419,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -450,8 +432,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr02_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -464,8 +445,59 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr02_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
+        InstructionService.sendInstruction(data, isLimitTime);
+    }
+
+    /**
+     * 关闭光控
+     *
+     * @param id 设备id
+     */
+    public static void getLumen(String id) {
+        byte[] id_cmd = hexString2BytesData(id);
+        byte[] ctr_cmd = concatAllFirst(id_cmd, new byte[]{(byte) 0xFF}, ctr01_cmd);
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
+        InstructionService.sendInstruction(data, true);
+    }
+
+    /**
+     * 关闭光控
+     *
+     * @param id 设备id
+     */
+    public static void getLumen(String id, boolean isLimitTime) {
+        byte[] id_cmd = hexString2BytesData(id);
+        byte[] ctr_cmd = concatAllFirst(id_cmd, new byte[]{(byte) 0xFF}, ctr01_cmd);
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
+        InstructionService.sendInstruction(data, isLimitTime);
+    }
+
+    /**
+     * 获取某传感器
+     *
+     * @param id 设备id
+     */
+    public static void getSensor(String id, byte[] code_cmd) {
+        byte[] id_cmd = hexString2BytesData(id);
+        byte[] ctr_cmd = concatAllFirst(id_cmd, new byte[]{(byte) 0xFF}, code_cmd);
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
+        InstructionService.sendInstruction(data, true);
+    }
+
+    /**
+     * 获取某传感器
+     *
+     * @param id 设备id
+     */
+    public static void getSensor(String id, byte[] code_cmd, boolean isLimitTime) {
+        byte[] id_cmd = hexString2BytesData(id);
+        byte[] ctr_cmd = concatAllFirst(id_cmd, new byte[]{(byte) 0xFF}, code_cmd);
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -510,8 +542,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -536,8 +567,7 @@ public class ControlInstruction {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -550,8 +580,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr01_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -565,8 +594,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr01_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -582,8 +610,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllThird(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min}, multiInstruction);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -600,8 +627,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllThird(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min}, multiInstruction);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -621,8 +647,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);//因控制板顺序是红白蓝 故此处顺序如此
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min, (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -643,8 +668,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);//因控制板顺序是红白蓝 故此处顺序如此
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min, (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -660,8 +684,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr04_cmd, new byte[]{(byte) hour, (byte) min, (byte) second});
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -676,8 +699,7 @@ public class ControlInstruction {
         byte[] group_cmd = hexString2BytesData(groupId);
         byte[] ctr_cmd = concatAllFirst(sole_cmd, ctr05_cmd, ctr01_cmd, group_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -693,8 +715,7 @@ public class ControlInstruction {
         byte[] group_cmd = hexString2BytesData(groupId);
         byte[] ctr_cmd = concatAllFirst(sole_cmd, ctr05_cmd, ctr01_cmd, group_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -710,8 +731,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(deviceId);
         byte[] ctr_cmd = concatAllThird(id_cmd, ctr08_cmd, new byte[]{integer2byteFront(minLumen), integer2byteBack(minLumen), integer2byteFront(maxLumen), integer2byteBack(maxLumen)}, multiInstruction);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -728,8 +748,7 @@ public class ControlInstruction {
         byte[] id_cmd = hexString2BytesData(deviceId);
         byte[] ctr_cmd = concatAllThird(id_cmd, ctr08_cmd, new byte[]{integer2byteFront(minLumen), integer2byteBack(minLumen), integer2byteFront(maxLumen), integer2byteBack(maxLumen)}, multiInstruction);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -752,8 +771,7 @@ public class ControlInstruction {
                 integer2byteFront(maxLumen), integer2byteBack(maxLumen),
                 (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});//因控制板顺序是红白蓝 故此处顺序如此
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -777,8 +795,7 @@ public class ControlInstruction {
                 integer2byteFront(maxLumen), integer2byteBack(maxLumen),
                 (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});//因控制板顺序是红白蓝 故此处顺序如此
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
@@ -793,8 +810,7 @@ public class ControlInstruction {
         byte[] group_cmd = hexString2BytesData(groupId);
         byte[] ctr_cmd = concatAllFirst(sole_cmd, ctr05_cmd, ctr01_cmd, group_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
 
@@ -810,8 +826,7 @@ public class ControlInstruction {
         byte[] group_cmd = hexString2BytesData(groupId);
         byte[] ctr_cmd = concatAllFirst(sole_cmd, ctr05_cmd, ctr01_cmd, group_cmd);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
-        byte[] len_send_cmd = hexStringLen2Bytes(bytes2HexString01(concatAllFirst(len_ctr_cmd, ctr_cmd)));
-        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_send_cmd, len_ctr_cmd, ctr_cmd);
+        byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
 
