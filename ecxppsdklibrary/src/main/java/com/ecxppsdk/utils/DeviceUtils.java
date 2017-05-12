@@ -1,8 +1,11 @@
 package com.ecxppsdk.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -11,14 +14,16 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.ecxppsdk.R;
 import com.ecxppsdk.data.Constant;
 import com.ecxppsdk.data.URLs;
 
-import static com.ecxppsdk.utils.ConversionUtils.hexString2BytesData;
+import java.util.Locale;
+
+import static com.ecxppsdk.utils.ConversionUtils.hexString2Bytes;
 import static com.ecxppsdk.utils.ConversionUtils.hexString2BytesNew;
 
 
@@ -57,7 +62,7 @@ public class DeviceUtils {
      */
     public static byte[] getDstMac(Context context) {
         String gateway = SharedPreUtils.getString(context, Constant.SPK_GATEWAY, "123456123456");
-        return hexString2BytesData(gateway);
+        return hexString2Bytes(gateway);
     }
 
     /**
@@ -258,6 +263,93 @@ public class DeviceUtils {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             return -1;
+        }
+    }
+
+
+
+    /**
+     * 获取应用当前语言
+     *
+     * @param context
+     * @return
+     */
+    public static Locale getLanguage(Context context) {
+        try {
+            Resources resources = context.getResources();
+            Configuration config = resources.getConfiguration();
+            if (Build.VERSION.SDK_INT < 24) {
+                return config.locale;
+            } else {
+                return config.getLocales().get(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Locale.SIMPLIFIED_CHINESE;
+        }
+    }
+
+    /**
+     * 切换语言
+     *
+     * @param context
+     * @param locale
+     * @return
+     */
+    public static void switchLanguage(Context context, Locale locale) {
+        try {
+            Resources resources = context.getResources();
+            DisplayMetrics dm = resources.getDisplayMetrics();
+            Configuration config = resources.getConfiguration();
+            if (Build.VERSION.SDK_INT < 17) {
+                config.locale = locale;
+                resources.updateConfiguration(config, dm);
+            } else {
+                config.setLocale(locale);
+                context.createConfigurationContext(config);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 根据String获取地区
+     * @param strLocale
+     * @return
+     */
+    public static Locale getLocale(String strLocale){
+        if(strLocale.equals(Enums.LanguageType.ZH_CN.getLocale().toString())) {
+            return Enums.LanguageType.ZH_CN.getLocale();
+        }else if(strLocale.equals(Enums.LanguageType.ZH_TW.getLocale().toString())){
+            return Enums.LanguageType.ZH_TW.getLocale();
+        }else if(strLocale.equals(Enums.LanguageType.EN_US.getLocale().toString())){
+            return Enums.LanguageType.EN_US.getLocale();
+        }else if(strLocale.equals(Enums.LanguageType.JA_JP.getLocale().toString())){
+            return Enums.LanguageType.JA_JP.getLocale();
+        }else if(strLocale.equals(Enums.LanguageType.ES_ES.getLocale().toString())){
+            return Enums.LanguageType.ES_ES.getLocale();
+        }else {
+            return Enums.LanguageType.ZH_CN.getLocale();
+        }
+    }
+
+    /**
+     * 重启界面
+     *
+     * @param context
+     * @param cls
+     * @return
+     */
+    public static void rebootActivity(Context context, Class<?> cls) {
+        try {
+            Intent intent = new Intent(context, cls);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            context.startActivity(intent);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

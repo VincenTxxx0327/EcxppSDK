@@ -213,7 +213,7 @@ public class InstructionService extends Service {
                                 read[i] = buff[i];
                             }
                             byte[] back = Instruction.encode(read);
-                            Log.i("============BACK", ConversionUtils.bytes2HexString01(back) + " isConnecting:" + isConnecting);
+                            Log.i("============BACK", ConversionUtils.bytes2HexString(back) + " isConnecting:" + isConnecting);
                             EventBus.getDefault().post(new NetworkEvent(NetworkEvent.FEEDBACK, "feed back", back));
                         }
                     } catch (IOException e) {
@@ -314,7 +314,7 @@ public class InstructionService extends Service {
                 EventBus.getDefault().post(new NetworkEvent(NetworkEvent.TOOSOON, "too soon"));
                 return;
             }
-            Log.i("============SEND", ConversionUtils.bytes2HexString01(instruction) + " isConnecting:" + isConnecting);
+            Log.i("============SEND", ConversionUtils.bytes2HexString(instruction) + " isConnecting:" + isConnecting);
             if (mOutputStream != null) {
                 mOutputStream.write(instruction, 0, instruction.length);
                 mOutputStream.flush();

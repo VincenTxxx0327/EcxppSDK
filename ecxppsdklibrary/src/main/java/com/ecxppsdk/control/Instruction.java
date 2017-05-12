@@ -24,9 +24,9 @@ public class Instruction {
     public static byte[] open_all = {0x0C, (byte) 0xFA};//全关
     public static byte[] open_single = {(byte) 0x80};
     public static byte[] close_single = {(byte) 0x00};
-    public static byte[] light_id1 = ConversionUtils.hexString2BytesData("3EEE110B1B");//三路灯
-    public static byte[] light_id2 = ConversionUtils.hexString2BytesData("6DD7BF081B");//光管
-    public static byte[] light_id3 = ConversionUtils.hexString2BytesData("72BFB80A02");//条灯
+    public static byte[] light_id1 = ConversionUtils.hexString2Bytes("3EEE110B1B");//三路灯
+    public static byte[] light_id2 = ConversionUtils.hexString2Bytes("6DD7BF081B");//光管
+    public static byte[] light_id3 = ConversionUtils.hexString2Bytes("72BFB80A02");//条灯
     public static byte[] heart_data = {0x0f, 0x00, 0x00, 0x00, (byte) 0xEE, (byte) 0xEE};
     public static byte[] key = {0x1b, 0x2a, 0x0d, 0x3b, 0x4a, (byte) 0xae, (byte) 0xb3, 0x2d};//加密密钥
     //新指令
@@ -73,7 +73,7 @@ public class Instruction {
         }
         userAndPsw = user + "#" + "12345678";
         byte[] ctr_cmd = userAndPsw.getBytes();
-        byte[] len_cmd = ConversionUtils.hexStringLen2Bytes(ConversionUtils.bytes2HexString01(ctr_cmd));
+        byte[] len_cmd = ConversionUtils.hexStringLen2Bytes(ConversionUtils.bytes2HexString(ctr_cmd));
         return encode(concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr01_cmd, len_cmd, ctr_cmd));//新指令
     }
 
@@ -103,7 +103,7 @@ public class Instruction {
     public static byte[] setNetInstruction(String ssidAndPsw) {
         //规则：0a dst_mac(6Byte) src_mac(6Byte) 05 len(1Byte) ssid 23 passwd
         byte[] ctr_cmd = ssidAndPsw.getBytes();
-        byte[] len_cmd = ConversionUtils.hexStringLen2Bytes(ConversionUtils.bytes2HexString01(ctr_cmd));
+        byte[] len_cmd = ConversionUtils.hexStringLen2Bytes(ConversionUtils.bytes2HexString(ctr_cmd));
         byte[] data = Instruction.concatAllFirst(Instruction.prea_cmd, Instruction.dst_Mac, Instruction.src_Mac, Instruction.ctr05_cmd, len_cmd, ctr_cmd);
         byte[] buf = Instruction.encode(data);
         return encode(buf);//新指令

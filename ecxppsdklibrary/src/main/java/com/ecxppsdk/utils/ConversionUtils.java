@@ -11,32 +11,12 @@ import java.util.Random;
 public class ConversionUtils {
 
     /**
-     * 字节码转十六进制 方式一
-     *
-     * @param bytes
-     * @return
-     */
-    public static String bytes2HexString01(byte[] bytes) {
-        StringBuilder sb = new StringBuilder();
-        String tmp;
-        for (byte b : bytes) {
-            // 将每个字节与0xFF进行与运算，然后转化为10进制，然后借助于Integer再转化为16进制
-            tmp = Integer.toHexString(0xFF & b);
-            if (tmp.length() == 1) {// 每个字节8为，转为16进制标志，2个16进制位
-                tmp = "0" + tmp;
-            }
-            sb.append(tmp);
-        }
-        return sb.toString();
-    }
-
-    /**
      * 方式二
      *
      * @param bytes
      * @return
      */
-    public static String bytes2HexString02(byte[] bytes) {
+    public static String bytes2HexString(byte[] bytes) {
         final String HEX = "0123456789abcdef";
         StringBuilder sb = new StringBuilder(bytes.length * 2);
         for (byte b : bytes) {
@@ -50,12 +30,39 @@ public class ConversionUtils {
     }
 
     /**
-     * 将String转为byte数组
+     * byte数组中取int数值，本方法适用于(低位在前，高位在后)的顺序，和和intToBytes（）配套使用
+     *
+     * @param src    byte数组
+     * @param offset 从数组的第offset位开始
+     * @return int数值
+     */
+    public static int bytes2IntegerFront(byte[] src, int offset) {
+        int value = ((src[offset] & 0xFF)
+                | ((src[offset + 1] & 0xFF) << 8)
+                | ((src[offset + 2] & 0xFF) << 16)
+                | ((src[offset + 3] & 0xFF) << 24));
+        return value;
+    }
+
+    /**
+     * byte数组中取int数值，本方法适用于(低位在后，高)的顺序。和intToBytes2（）配套使用
+     */
+    public static int bytes2IntegerBack(byte[] src, int offset) {
+        int value = (((src[offset] & 0xFF) << 24)
+                | ((src[offset + 1] & 0xFF) << 16)
+                | ((src[offset + 2] & 0xFF) << 8)
+                | (src[offset + 3] & 0xFF));
+        return value;
+    }
+
+    /**
+     * 传入由数值String，将其转为byte数组
+     * 例如：FFFF-->0x3200
      *
      * @param src
      * @return
      */
-    public static byte[] hexString2BytesData(String src) {
+    public static byte[] hexString2Bytes(String src) {
         int len = src.length();
         byte[] ret = new byte[len / 2];
         String temp;
@@ -63,11 +70,7 @@ public class ConversionUtils {
             temp = src.substring(i * 2, i * 2 + 2);
             ret[i] = (byte) (Integer.parseInt(temp, 16));
         }
-        byte[] data = new byte[len / 2];
-        for (int j = 0; j < len / 2; j++) {
-            data[j] = ret[j];
-        }
-        return data;
+        return ret;
     }
 
     /**
@@ -114,36 +117,6 @@ public class ConversionUtils {
     }
 
     /**
-     * 传入由16进制组成的String，将其转为单个byte数组
-     * 例如：2000-->0x3200
-     *
-     * @param src
-     * @return
-     */
-    public static byte[] hexString2Bytes(String src) {
-        String str = Integer.toBinaryString(8);
-        byte[] ret = new byte[1];
-        ret[0] = (byte) (Integer.parseInt(str, 16));
-        return ret;
-    }
-
-    /**
-     * 高位在前，低位在后
-     * @param num
-     * @return
-     */
-    public static byte integer2byteFront(int num) {
-        return (byte) ((num >>> 8) & 0xff);
-    }
-    /**
-     * @param num
-     * @return
-     */
-    public static byte integer2byteBack(int num) {
-        return (byte) ((num >>> 0) & 0xff);
-    }
-
-    /**
      * 传入由16进制组成的String，将其byte长度大小转为单个byte数组
      * 例如：61646d696e233132333435363738-->0E
      *
@@ -155,27 +128,6 @@ public class ConversionUtils {
         byte[] ret = new byte[1];
         ret[0] = (byte) (Integer.parseInt(strTmp, 16));
         return ret;
-    }
-
-    /**
-     * 是否16进制字符
-     */
-
-    public static boolean isHexString(String strHex) {
-        int i = 0;
-        if (strHex.length() > 2) {//是否0X 或 0x 开头
-            if (strHex.charAt(0) == '0' && (strHex.charAt(1) == 'X' || strHex.charAt(1) == 'x')) {
-                i = 2;
-            }
-        }
-        for (; i < strHex.length(); ++i) {
-            char ch = strHex.charAt(i);
-            if ((ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'F') || (ch >= 'a' && ch <= 'f')) {
-                continue;
-            }
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -199,6 +151,72 @@ public class ConversionUtils {
             return "《上网配置返回的指令》";
         }
         return "";
+    }
+
+    /**
+     * 将int数值转换为占四个字节的byte数组，本方法适用于(低位在前，高位在后)的顺序。 和bytesToInt（）配套使用
+     *
+     * @param value 要转换的int值
+     * @return byte数组
+     */
+    public static byte[] integer2BytesFront(int value) {
+        byte[] src = new byte[4];
+        src[3] = (byte) ((value >> 24) & 0xFF);
+        src[2] = (byte) ((value >> 16) & 0xFF);
+        src[1] = (byte) ((value >> 8) & 0xFF);
+        src[0] = (byte) (value & 0xFF);
+        return src;
+    }
+
+    /**
+     * 将int数值转换为占四个字节的byte数组，本方法适用于(高位在前，低位在后)的顺序。  和bytesToInt2（）配套使用
+     */
+    public static byte[] integer2BytesBack(int value) {
+        byte[] src = new byte[4];
+        src[0] = (byte) ((value >> 24) & 0xFF);
+        src[1] = (byte) ((value >> 16) & 0xFF);
+        src[2] = (byte) ((value >> 8) & 0xFF);
+        src[3] = (byte) (value & 0xFF);
+        return src;
+    }
+
+    /**
+     * 高位在前，低位在后
+     *
+     * @param num
+     * @return
+     */
+    public static byte integer2byteFront(int num) {
+        return (byte) ((num >>> 8) & 0xff);
+    }
+
+    /**
+     * @param num
+     * @return
+     */
+    public static byte integer2byteBack(int num) {
+        return (byte) ((num >>> 0) & 0xff);
+    }
+
+    /**
+     * 是否16进制字符
+     */
+
+    public static boolean isHexString(String strHex) {
+        int i = 0;
+        if (strHex.length() > 2) {//是否0X 或 0x 开头
+            if (strHex.charAt(0) == '0' && (strHex.charAt(1) == 'X' || strHex.charAt(1) == 'x')) {
+                i = 2;
+            }
+        }
+        for (; i < strHex.length(); ++i) {
+            char ch = strHex.charAt(i);
+            if ((ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'F') || (ch >= 'a' && ch <= 'f')) {
+                continue;
+            }
+            return false;
+        }
+        return true;
     }
 
     public static int getRandomNum() {
@@ -233,7 +251,7 @@ public class ConversionUtils {
         byte[] bytes = new byte[5];
         Random r = new Random();
         r.nextBytes(bytes);
-        return bytes2HexString01(bytes).toUpperCase();
+        return bytes2HexString(bytes).toUpperCase();
     }
 
 }

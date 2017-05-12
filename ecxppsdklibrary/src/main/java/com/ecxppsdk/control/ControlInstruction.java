@@ -15,8 +15,8 @@ import static com.ecxppsdk.control.Instruction.ctr08_cmd;
 import static com.ecxppsdk.control.Instruction.dst_Mac;
 import static com.ecxppsdk.control.Instruction.prea_cmd;
 import static com.ecxppsdk.control.Instruction.src_Mac;
-import static com.ecxppsdk.utils.ConversionUtils.bytes2HexString01;
-import static com.ecxppsdk.utils.ConversionUtils.hexString2BytesData;
+import static com.ecxppsdk.utils.ConversionUtils.bytes2HexString;
+import static com.ecxppsdk.utils.ConversionUtils.hexString2Bytes;
 import static com.ecxppsdk.utils.ConversionUtils.hexStringLen2Bytes;
 import static com.ecxppsdk.utils.ConversionUtils.integer2byteBack;
 import static com.ecxppsdk.utils.ConversionUtils.integer2byteFront;
@@ -35,9 +35,9 @@ public class ControlInstruction {
      * @param id 设备id
      */
     public static void cancelAlarm(String id) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr03_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -49,9 +49,9 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void cancelAlarm(String id, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr03_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -64,9 +64,9 @@ public class ControlInstruction {
      * @param min  设备当前定时分钟
      */
     public static void cancelAlarm(String id, int hour, int min) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr03_cmd, new byte[]{(byte) hour, (byte) min});
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -80,9 +80,9 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void cancelAlarm(String id, int hour, int min, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr03_cmd, new byte[]{(byte) hour, (byte) min});
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -93,9 +93,9 @@ public class ControlInstruction {
      * @param soleId 组id
      */
     public static void cancelLightGroup(String soleId) {
-        byte[] id_cmd = hexString2BytesData(soleId);
+        byte[] id_cmd = hexString2Bytes(soleId);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr05_cmd, ctr01_cmd, new byte[]{(byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF});
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -107,9 +107,9 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void cancelLightGroup(String soleId, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(soleId);
+        byte[] id_cmd = hexString2Bytes(soleId);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr05_cmd, ctr01_cmd, new byte[]{(byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF});
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -120,9 +120,9 @@ public class ControlInstruction {
      * @param id 设备id
      */
     public static void cancelLumen(String id) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr03_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -134,9 +134,9 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void cancelLumen(String id, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr03_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -149,14 +149,14 @@ public class ControlInstruction {
      * @param multiInstruction 多路指令
      */
     public static void changeLight(String id, @Nullable byte[] code_cmd, byte[]... multiInstruction) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd;
         if (code_cmd == null) {
             ctr_cmd = concatAllFirst(id_cmd, multiInstruction);
         } else {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -170,14 +170,14 @@ public class ControlInstruction {
      * @param multiInstruction 多路指令
      */
     public static void changeLight(String id, @Nullable byte[] code_cmd, boolean isLimitTime, byte[]... multiInstruction) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd;
         if (code_cmd == null) {
             ctr_cmd = concatAllFirst(id_cmd, multiInstruction);
         } else {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -214,7 +214,7 @@ public class ControlInstruction {
      * @param roadNum  控制路数
      */
     public static void changeLight(String id, @Nullable byte[] code_cmd, boolean isOpen, int roadNum) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
             if (isOpen) {
@@ -229,7 +229,7 @@ public class ControlInstruction {
         } else {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -244,7 +244,7 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void changeLight(String id, @Nullable byte[] code_cmd, boolean isOpen, int roadNum, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
             if (isOpen) {
@@ -259,7 +259,7 @@ public class ControlInstruction {
         } else {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -273,7 +273,7 @@ public class ControlInstruction {
      * @param roadNum   控制路数
      */
     public static void changeLight(String id, @Nullable byte[] code_cmd, byte multi_cmd, int roadNum) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
             multiInstruction[i] = multi_cmd;
@@ -284,7 +284,7 @@ public class ControlInstruction {
         } else {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -299,7 +299,7 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void changeLight(String id, @Nullable byte[] code_cmd, byte multi_cmd, int roadNum, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
             multiInstruction[i] = multi_cmd;
@@ -310,7 +310,7 @@ public class ControlInstruction {
         } else {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -323,13 +323,13 @@ public class ControlInstruction {
      */
     public static void changeLumen(String id, boolean isOpen) {
         byte[] ctr_cmd;
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         if (isOpen) {
             ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr01_cmd);
         } else {
             ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr02_cmd);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -343,13 +343,13 @@ public class ControlInstruction {
      */
     public static void changeLumen(String id, boolean isOpen, boolean isLimitTime) {
         byte[] ctr_cmd;
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         if (isOpen) {
             ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr01_cmd);
         } else {
             ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr02_cmd);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -383,7 +383,7 @@ public class ControlInstruction {
      * @param roadNum  控制路数
      */
     public static void closeLight(String id, @Nullable byte[] code_cmd, int roadNum) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
             multiInstruction[i] = (byte) 0x00;
@@ -394,7 +394,7 @@ public class ControlInstruction {
         } else {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -407,7 +407,7 @@ public class ControlInstruction {
      * @param roadNum  控制路数
      */
     public static void closeLight(String id, @Nullable byte[] code_cmd, int roadNum, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
             multiInstruction[i] = (byte) 0x00;
@@ -418,7 +418,7 @@ public class ControlInstruction {
         } else {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -429,9 +429,9 @@ public class ControlInstruction {
      * @param id 设备id
      */
     public static void closeLumen(String id) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr02_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -442,9 +442,9 @@ public class ControlInstruction {
      * @param id 设备id
      */
     public static void closeLumen(String id, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr02_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -455,9 +455,9 @@ public class ControlInstruction {
      * @param id 设备id
      */
     public static void getLumen(String id) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, new byte[]{(byte) 0xFF}, ctr01_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -468,9 +468,9 @@ public class ControlInstruction {
      * @param id 设备id
      */
     public static void getLumen(String id, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, new byte[]{(byte) 0xFF}, ctr01_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -481,9 +481,9 @@ public class ControlInstruction {
      * @param id 设备id
      */
     public static void getSensor(String id, byte[] code_cmd) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, new byte[]{(byte) 0xFF}, code_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -494,9 +494,9 @@ public class ControlInstruction {
      * @param id 设备id
      */
     public static void getSensor(String id, byte[] code_cmd, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, new byte[]{(byte) 0xFF}, code_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -530,7 +530,7 @@ public class ControlInstruction {
      * @param roadNum  控制路数
      */
     public static void openLight(String id, @Nullable byte[] code_cmd, int roadNum) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
             multiInstruction[i] = (byte) 0x32;
@@ -541,7 +541,7 @@ public class ControlInstruction {
         } else {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -555,7 +555,7 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void openLight(String id, @Nullable byte[] code_cmd, int roadNum, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] multiInstruction = new byte[roadNum];
         for (int i = 0; i < multiInstruction.length; i++) {
             multiInstruction[i] = (byte) 0x32;
@@ -566,7 +566,7 @@ public class ControlInstruction {
         } else {
             ctr_cmd = concatAllSecond(id_cmd, code_cmd, multiInstruction);
         }
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -577,9 +577,9 @@ public class ControlInstruction {
      * @param id 设备id
      */
     public static void openLumen(String id) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr01_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -591,9 +591,9 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void openLumen(String id, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr07_cmd, ctr01_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -607,9 +607,9 @@ public class ControlInstruction {
      * @param multiInstruction 多路指令
      */
     public static void setAlarm(String id, int hour, int min, byte[]... multiInstruction) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllThird(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min}, multiInstruction);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -624,9 +624,9 @@ public class ControlInstruction {
      * @param multiInstruction 多路指令
      */
     public static void setAlarm(String id, int hour, int min, boolean isLimitTime, byte[]... multiInstruction) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllThird(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min}, multiInstruction);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -644,9 +644,9 @@ public class ControlInstruction {
      * @param ultraviolet 紫光
      */
     public static void setAlarm(String id, int hour, int min, int red, int blue, int white, int infrared, int ultraviolet) {
-        byte[] id_cmd = hexString2BytesData(id);//因控制板顺序是红白蓝 故此处顺序如此
+        byte[] id_cmd = hexString2Bytes(id);//因控制板顺序是红白蓝 故此处顺序如此
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min, (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -665,9 +665,9 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void setAlarm(String id, int hour, int min, int red, int blue, int white, int infrared, int ultraviolet, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(id);//因控制板顺序是红白蓝 故此处顺序如此
+        byte[] id_cmd = hexString2Bytes(id);//因控制板顺序是红白蓝 故此处顺序如此
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr02_cmd, new byte[]{(byte) hour, (byte) min, (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -681,9 +681,9 @@ public class ControlInstruction {
      * @param second 当前秒
      */
     public static void setAlarmBase(String id, int hour, int min, int second) {
-        byte[] id_cmd = hexString2BytesData(id);
+        byte[] id_cmd = hexString2Bytes(id);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr04_cmd, new byte[]{(byte) hour, (byte) min, (byte) second});
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -695,10 +695,10 @@ public class ControlInstruction {
      * @param groupId 组id
      */
     public static void setLightGroup(String soleId, String groupId) {
-        byte[] sole_cmd = hexString2BytesData(soleId);
-        byte[] group_cmd = hexString2BytesData(groupId);
+        byte[] sole_cmd = hexString2Bytes(soleId);
+        byte[] group_cmd = hexString2Bytes(groupId);
         byte[] ctr_cmd = concatAllFirst(sole_cmd, ctr05_cmd, ctr01_cmd, group_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -711,10 +711,10 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void setLightGroup(String soleId, String groupId, boolean isLimitTime) {
-        byte[] sole_cmd = hexString2BytesData(soleId);
-        byte[] group_cmd = hexString2BytesData(groupId);
+        byte[] sole_cmd = hexString2Bytes(soleId);
+        byte[] group_cmd = hexString2Bytes(groupId);
         byte[] ctr_cmd = concatAllFirst(sole_cmd, ctr05_cmd, ctr01_cmd, group_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -728,9 +728,9 @@ public class ControlInstruction {
      * @param multiInstruction 多路指令
      */
     public static void setLumen(String deviceId, int minLumen, int maxLumen, byte[]... multiInstruction) {
-        byte[] id_cmd = hexString2BytesData(deviceId);
+        byte[] id_cmd = hexString2Bytes(deviceId);
         byte[] ctr_cmd = concatAllThird(id_cmd, ctr08_cmd, new byte[]{integer2byteFront(minLumen), integer2byteBack(minLumen), integer2byteFront(maxLumen), integer2byteBack(maxLumen)}, multiInstruction);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -745,9 +745,9 @@ public class ControlInstruction {
      * @param multiInstruction 多路指令
      */
     public static void setLumen(String deviceId, int minLumen, int maxLumen, boolean isLimitTime, byte[]... multiInstruction) {
-        byte[] id_cmd = hexString2BytesData(deviceId);
+        byte[] id_cmd = hexString2Bytes(deviceId);
         byte[] ctr_cmd = concatAllThird(id_cmd, ctr08_cmd, new byte[]{integer2byteFront(minLumen), integer2byteBack(minLumen), integer2byteFront(maxLumen), integer2byteBack(maxLumen)}, multiInstruction);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -765,12 +765,12 @@ public class ControlInstruction {
      * @param ultraviolet 紫光
      */
     public static void setLumen(String deviceId, int minLumen, int maxLumen, int red, int blue, int white, int infrared, int ultraviolet) {
-        byte[] id_cmd = hexString2BytesData(deviceId);
+        byte[] id_cmd = hexString2Bytes(deviceId);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr08_cmd, new byte[]{
                 integer2byteFront(minLumen), integer2byteBack(minLumen),
                 integer2byteFront(maxLumen), integer2byteBack(maxLumen),
                 (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});//因控制板顺序是红白蓝 故此处顺序如此
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -789,12 +789,12 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void setLumen(String deviceId, int minLumen, int maxLumen, int red, int blue, int white, int infrared, int ultraviolet, boolean isLimitTime) {
-        byte[] id_cmd = hexString2BytesData(deviceId);
+        byte[] id_cmd = hexString2Bytes(deviceId);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr08_cmd, new byte[]{
                 integer2byteFront(minLumen), integer2byteBack(minLumen),
                 integer2byteFront(maxLumen), integer2byteBack(maxLumen),
                 (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});//因控制板顺序是红白蓝 故此处顺序如此
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
@@ -806,10 +806,10 @@ public class ControlInstruction {
      * @param groupId 组id
      */
     public static void setLumenGroup(String soleId, String groupId) {
-        byte[] sole_cmd = hexString2BytesData(soleId);
-        byte[] group_cmd = hexString2BytesData(groupId);
+        byte[] sole_cmd = hexString2Bytes(soleId);
+        byte[] group_cmd = hexString2Bytes(groupId);
         byte[] ctr_cmd = concatAllFirst(sole_cmd, ctr05_cmd, ctr01_cmd, group_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
     }
@@ -822,10 +822,10 @@ public class ControlInstruction {
      * @param isLimitTime 是否限制频繁操作
      */
     public static void setLumenGroup(String soleId, String groupId, boolean isLimitTime) {
-        byte[] sole_cmd = hexString2BytesData(soleId);
-        byte[] group_cmd = hexString2BytesData(groupId);
+        byte[] sole_cmd = hexString2Bytes(soleId);
+        byte[] group_cmd = hexString2Bytes(groupId);
         byte[] ctr_cmd = concatAllFirst(sole_cmd, ctr05_cmd, ctr01_cmd, group_cmd);
-        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString01(ctr_cmd));
+        byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
     }
