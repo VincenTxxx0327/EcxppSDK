@@ -1,5 +1,7 @@
 package com.ecxppsdk.control;
 
+import com.ecxppsdk.utils.ConversionUtils;
+
 /**
  * Author: VincenT
  * Date: 2017/4/24 10:23
@@ -16,6 +18,8 @@ public class FeedbackDataFilter {
 
     public static final int OPERATE_SUCCESS = 0x01;//操作成功返回码
     public static final int OPERATE_FAILED = 0x00;//操作失败返回码
+    public static final int SENSOR_SUCCESS = 0xF1;//操作成功返回码
+    public static final int SENSOR_FAILED = 0x00;//操作失败返回码
     public static final int LOGIN_SUCCESS = 0x03;//登录成功返回码
     public static final int LOGIN_FAILED = 0x04;//登录失败返回码
     public static final int REGISTER_SUCCESS = 0x05;//注册成功返回码，注册失败无返回
@@ -55,10 +59,14 @@ public class FeedbackDataFilter {
                     } else if (feedback[feedback.length - 1] == 0x00) {//操作失败
                         back = OPERATE_FAILED;
                     }
-                } else if (feedback[0] == Instruction.preb_cmd[0] && feedback[13] == 0x02) {//转发串口指令 0b f409d861185f 1c887951ea46 02 0c 0c d48a74ee28 06 0000000000
-                    if (feedback[14] != 0x00) {//操作成功
-                        back = OPERATE_SUCCESS;
-                    } else {//操作失败
+                } else if (feedback[0] == Instruction.preb_cmd[0] && feedback[13] == 0x02) {//转发串口指令 0b f409d861185f 1c887951ea46 02 0c d48a74ee28 06 0000000000
+                    if (feedback[14] != 0x00) {///识别码后面不为00则操作成功
+                        if (ConversionUtils.bytesSubBytes(feedback, 14)[5] != (byte) 0xFF) {   //非传感器  D48A74EE28 06    0000000000
+                            back = OPERATE_SUCCESS;
+                        } else {                        //传感器    D48A74EE28 FF 01 1234
+                            back = SENSOR_SUCCESS;
+                        }
+                    } else {//////////////////////////////////////////////识别码后面为00则操作失败
                         back = OPERATE_FAILED;
                     }
                 } else if (feedback[0] == Instruction.preb_cmd[0] && feedback[13] == 0x03) {//用户登录 0b f409d861185f 1c887951ea46 01 01 01

@@ -186,7 +186,7 @@ public class ConversionUtils {
      * @param num
      * @return
      */
-    public static byte integer2byteFront(int num) {
+    public static byte integer2ByteFront(int num) {
         return (byte) ((num >>> 8) & 0xff);
     }
 
@@ -194,8 +194,20 @@ public class ConversionUtils {
      * @param num
      * @return
      */
-    public static byte integer2byteBack(int num) {
+    public static byte integer2ByteBack(int num) {
         return (byte) ((num >>> 0) & 0xff);
+    }
+
+    public static byte[] bytesSubBytes(byte[] feedback, int lenPos) {
+        byte[] temp;
+        if (feedback[14] == feedback[15]) {//包含两个长度时
+            temp = new byte[feedback.length - (lenPos + 2)];
+            System.arraycopy(feedback, lenPos + 2, temp, 0, feedback.length - (lenPos + 2));
+        } else {
+            temp = new byte[feedback.length - (lenPos + 1)];
+            System.arraycopy(feedback, lenPos + 1, temp, 0, feedback.length - (lenPos + 1));
+        }
+        return temp;
     }
 
     /**
