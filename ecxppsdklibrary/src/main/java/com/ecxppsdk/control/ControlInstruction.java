@@ -18,8 +18,8 @@ import static com.ecxppsdk.control.Instruction.src_Mac;
 import static com.ecxppsdk.utils.ConversionUtils.bytes2HexString;
 import static com.ecxppsdk.utils.ConversionUtils.hexString2Bytes;
 import static com.ecxppsdk.utils.ConversionUtils.hexStringLen2Bytes;
-import static com.ecxppsdk.utils.ConversionUtils.integer2byteBack;
-import static com.ecxppsdk.utils.ConversionUtils.integer2byteFront;
+import static com.ecxppsdk.utils.ConversionUtils.integer2ByteBack;
+import static com.ecxppsdk.utils.ConversionUtils.integer2ByteFront;
 
 /**
  * Author: VincenT
@@ -729,7 +729,7 @@ public class ControlInstruction {
      */
     public static void setLumen(String deviceId, int minLumen, int maxLumen, byte[]... multiInstruction) {
         byte[] id_cmd = hexString2Bytes(deviceId);
-        byte[] ctr_cmd = concatAllThird(id_cmd, ctr08_cmd, new byte[]{integer2byteFront(minLumen), integer2byteBack(minLumen), integer2byteFront(maxLumen), integer2byteBack(maxLumen)}, multiInstruction);
+        byte[] ctr_cmd = concatAllThird(id_cmd, ctr08_cmd, new byte[]{integer2ByteFront(minLumen), integer2ByteBack(minLumen), integer2ByteFront(maxLumen), integer2ByteBack(maxLumen)}, multiInstruction);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, true);
@@ -746,7 +746,7 @@ public class ControlInstruction {
      */
     public static void setLumen(String deviceId, int minLumen, int maxLumen, boolean isLimitTime, byte[]... multiInstruction) {
         byte[] id_cmd = hexString2Bytes(deviceId);
-        byte[] ctr_cmd = concatAllThird(id_cmd, ctr08_cmd, new byte[]{integer2byteFront(minLumen), integer2byteBack(minLumen), integer2byteFront(maxLumen), integer2byteBack(maxLumen)}, multiInstruction);
+        byte[] ctr_cmd = concatAllThird(id_cmd, ctr08_cmd, new byte[]{integer2ByteFront(minLumen), integer2ByteBack(minLumen), integer2ByteFront(maxLumen), integer2ByteBack(maxLumen)}, multiInstruction);
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
         InstructionService.sendInstruction(data, isLimitTime);
@@ -767,8 +767,8 @@ public class ControlInstruction {
     public static void setLumen(String deviceId, int minLumen, int maxLumen, int red, int blue, int white, int infrared, int ultraviolet) {
         byte[] id_cmd = hexString2Bytes(deviceId);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr08_cmd, new byte[]{
-                integer2byteFront(minLumen), integer2byteBack(minLumen),
-                integer2byteFront(maxLumen), integer2byteBack(maxLumen),
+                integer2ByteFront(minLumen), integer2ByteBack(minLumen),
+                integer2ByteFront(maxLumen), integer2ByteBack(maxLumen),
                 (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});//因控制板顺序是红白蓝 故此处顺序如此
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
@@ -791,8 +791,8 @@ public class ControlInstruction {
     public static void setLumen(String deviceId, int minLumen, int maxLumen, int red, int blue, int white, int infrared, int ultraviolet, boolean isLimitTime) {
         byte[] id_cmd = hexString2Bytes(deviceId);
         byte[] ctr_cmd = concatAllFirst(id_cmd, ctr08_cmd, new byte[]{
-                integer2byteFront(minLumen), integer2byteBack(minLumen),
-                integer2byteFront(maxLumen), integer2byteBack(maxLumen),
+                integer2ByteFront(minLumen), integer2ByteBack(minLumen),
+                integer2ByteFront(maxLumen), integer2ByteBack(maxLumen),
                 (byte) red, (byte) blue, (byte) white, (byte) infrared, (byte) ultraviolet});//因控制板顺序是红白蓝 故此处顺序如此
         byte[] len_ctr_cmd = hexStringLen2Bytes(bytes2HexString(ctr_cmd));
         byte[] data = concatAllFirst(prea_cmd, dst_Mac, src_Mac, ctr02_cmd, len_ctr_cmd, ctr_cmd);
