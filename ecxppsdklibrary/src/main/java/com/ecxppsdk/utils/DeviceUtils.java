@@ -278,7 +278,7 @@ public class DeviceUtils {
         try {
             Resources resources = context.getResources();
             Configuration config = resources.getConfiguration();
-            if (Build.VERSION.SDK_INT < 24) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 return config.locale;
             } else {
                 return config.getLocales().get(0);
@@ -301,13 +301,8 @@ public class DeviceUtils {
             Resources resources = context.getResources();
             DisplayMetrics dm = resources.getDisplayMetrics();
             Configuration config = resources.getConfiguration();
-            if (Build.VERSION.SDK_INT < 17) {
-                config.locale = locale;
-                resources.updateConfiguration(config, dm);
-            } else {
-                config.setLocale(locale);
-                context.createConfigurationContext(config);
-            }
+            config.locale = locale;
+            resources.updateConfiguration(config, dm);
         } catch (Exception e) {
             e.printStackTrace();
         }
