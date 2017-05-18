@@ -47,6 +47,8 @@ public class Instruction {
     public static byte[] ctr07_cmd = {0x07};//识别码
     public static byte[] ctr08_cmd = {0x08};//识别码
     public static byte[] heart_cmd = {0x00};//心跳包
+    public static byte[] lumen_cmd = {(byte) 0xFF, 0x01};   //寻找光感指令
+    public static byte[] gas_cmd   = {(byte) 0xFF, 0x02};   //寻找气体指令
 
     /**
      * 注册指令

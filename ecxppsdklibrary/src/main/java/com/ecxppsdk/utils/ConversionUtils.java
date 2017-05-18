@@ -198,6 +198,11 @@ public class ConversionUtils {
         return (byte) ((num >>> 0) & 0xff);
     }
 
+    /**
+     * @param feedback 需要截取的bytes数组
+     * @param lenPos   bytes数组长度识别码的位置
+     * @return
+     */
     public static byte[] bytesSubBytes(byte[] feedback, int lenPos) {
         byte[] temp;
         if (feedback[14] == feedback[15]) {//包含两个长度时
@@ -208,6 +213,52 @@ public class ConversionUtils {
             System.arraycopy(feedback, lenPos + 1, temp, 0, feedback.length - (lenPos + 1));
         }
         return temp;
+    }
+
+    /**
+     * @param feedback 需要截取的bytes数组
+     * @param lenPos   bytes数组长度识别码的位置
+     * @param endPos   截取到某位置为止
+     * @return
+     */
+    public static byte[] bytesSubBytes(byte[] feedback, int lenPos, int endPos) {
+        byte[] temp;
+        if (feedback[14] == feedback[15]) {//包含两个长度时
+            temp = new byte[endPos - (lenPos + 2)];
+            System.arraycopy(feedback, lenPos + 2, temp, 0, endPos - (lenPos + 2));
+        } else {
+            temp = new byte[endPos - (lenPos + 1)];
+            System.arraycopy(feedback, lenPos + 1, temp, 0, endPos - (lenPos + 1));
+        }
+        return temp;
+    }
+
+    public static int byteIndexOf(byte[] largeBytes, byte smallBytes) {
+        if (largeBytes == null || largeBytes.length == 0)
+            return -1;
+        for (int i = 0; i < largeBytes.length - 1; i++) {
+            if (largeBytes[i] == smallBytes) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int bytesIndexOf(byte[] largeBytes, byte[] smallBytes) {
+        if (smallBytes == null || largeBytes == null || smallBytes.length == 0 || largeBytes.length == 0 || smallBytes.length > largeBytes.length)
+            return -1;
+        int i, j;
+        for (i = 0; i < largeBytes.length - 1; i++) {
+            if (largeBytes[i] == smallBytes[0]) {
+                for (j = 1; j < smallBytes.length; j++) {
+                    if (largeBytes[i + j] != smallBytes[j])
+                        break;
+                }
+                if (j == smallBytes.length)
+                    return i;
+            }
+        }
+        return -1;
     }
 
     /**
