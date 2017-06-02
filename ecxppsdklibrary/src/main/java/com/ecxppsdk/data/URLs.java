@@ -29,18 +29,19 @@ public class URLs {
     //修改密码
     public static String MODIFY_PWD = BASE_URL + "/reset/pwd";
 
+    public static final String PARAM_PHONE = "phone";
+    public static final String PARAM_PWD = "pwd";
+    public static final String PARAM_CODE = "code";
+    public static final String PARAM_RESET_CODE = "reset_code";
 
+    public static final String PARAM_DATA = "data";
+    public static final String PARAM_ERROR_CODE = "errcode";
 
-    public static final String REQUEST_PARAM_PHONE = "phone";
-    public static final String REQUEST_PARAM_PWD = "pwd";
-    public static final String REQUEST_PARAM_CODE = "code";
-    public static final String REQUEST_PARAM_RESET_CODE = "reset_code";
-    public static final String REQUEST_PARAM_VERSION = "currentVersion";
-
-    public static final String RESPONSE_ERROR_CODE = "errcode";
-    public static final String RESPONSE_DATA = "data";
-    public static final String RESPONSE_MESSAGE = "message";
-    public static final String RESPONSE_LASTEST = "lastest";
-    public static final String RESPONSE_DOWNLOAD_URL = "downloadUrl";
+    public static final String PARAM_VERSION_CODE = "versionCode";
+    public static final String PARAM_VERSION_NAME = "versionName";
+    public static final String PARAM_DOWNLOAD_URL = "downloadUrl";
+    public static final String PARAM_MESSAGE = "message";
+    public static final String PARAM_LATEST = "latest";
+    public static final String PARAM_FORCE = "force";
 
 }

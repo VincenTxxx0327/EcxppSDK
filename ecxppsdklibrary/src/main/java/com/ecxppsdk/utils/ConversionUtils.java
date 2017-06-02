@@ -282,19 +282,22 @@ public class ConversionUtils {
         return true;
     }
 
-    public static int getRandomNum() {
-        Random random = new Random(1000000000);
-        int value = random.nextInt();
+    /**
+     * @return 返回随机数，最大值为Integer.MAX_VALUE
+     */
+    public static int getRandomInteger() {
+        Random random = new Random();
+        int value = random.nextInt(Integer.MAX_VALUE);
         String valueStr = String.valueOf(value);
         if (valueStr.length() < 10) {
-            if (valueStr.length() == 1 || valueStr.length() == 3 || valueStr.length() == 5 || valueStr.length() == 7 || valueStr.length() == 9) {
-                for (int i = 0; i < 10; i++) {
-                    valueStr += "0";
+            if (valueStr.length() % 2 == 1) {//单数长度
+                for (int i = valueStr.length(); i < 10; i++) {
+                    valueStr = "1" + valueStr;
                 }
-            } else {
+            } else {//双数长度
                 StringBuilder sb = new StringBuilder(valueStr);//构造一个StringBuilder对象
-                for (int i = 0; i < 10; i++) {
-                    sb.insert(1, "1");//在指定的位置1，插入指定的字符串
+                sb.insert(0, "1");//在指定的位置1，插入指定的字符串
+                for (int i = sb.length(); i < 10; i++) {
                     valueStr = sb.toString();
                     valueStr += "0";
                 }
@@ -306,14 +309,36 @@ public class ConversionUtils {
     }
 
     /**
-     * 获得5byte长度的随机byte
-     *
-     * @return
+     * @param valueNum 设置最大值
+     * @return 返回随机数，最大值为valueNum
      */
-    public static String getRandomNumStr() {
+    public static int getRandomInteger(int valueNum) {
+        Random random = new Random();
+        return random.nextInt(valueNum);
+    }
+
+    /**
+     * 获得5byte长度的随机bytes数组
+     *
+     * @return 返回随机数组，最大长度为5byte
+     */
+    public static String getRandomString() {
         byte[] bytes = new byte[5];
-        Random r = new Random();
-        r.nextBytes(bytes);
+        Random random = new Random();
+        random.nextBytes(bytes);
+        return bytes2HexString(bytes).toUpperCase();
+    }
+
+    /**
+     * 获得某长度的随机bytes数组
+     *
+     * @param bytesLen 生成的数组长度
+     * @return 返回随机数组，最大长度为bytesLen
+     */
+    public static String getRandomString(int bytesLen) {
+        byte[] bytes = new byte[bytesLen];
+        Random random = new Random();
+        random.nextBytes(bytes);
         return bytes2HexString(bytes).toUpperCase();
     }
 
