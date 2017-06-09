@@ -12,15 +12,18 @@ import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.support.v4.content.FileProvider;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
 import com.ecxppsdk.data.Constant;
 import com.ecxppsdk.data.URLs;
 
+import java.io.File;
 import java.util.Locale;
 
 import static com.ecxppsdk.utils.ConversionUtils.hexString2Bytes;
@@ -266,7 +269,18 @@ public class DeviceUtils {
         }
     }
 
-
+    public static void installApp(Context context, String filePath) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Uri contentUri = FileProvider.getUriForFile(context, context.getPackageName() + ".provider", new File(filePath));
+            intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+        } else {
+            intent.setDataAndType(Uri.fromFile(new File(filePath)), "application/vnd.android.package-archive");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        context.startActivity(intent);
+    }
 
     /**
      * 获取应用当前语言
@@ -310,21 +324,22 @@ public class DeviceUtils {
 
     /**
      * 根据String获取地区
+     *
      * @param strLocale
      * @return
      */
-    public static Locale getLocale(String strLocale){
-        if(strLocale.equals(Enums.LanguageType.ZH_CN.getLocale().toString())) {
+    public static Locale getLocale(String strLocale) {
+        if (strLocale.equals(Enums.LanguageType.ZH_CN.getLocale().toString())) {
             return Enums.LanguageType.ZH_CN.getLocale();
-        }else if(strLocale.equals(Enums.LanguageType.ZH_TW.getLocale().toString())){
+        } else if (strLocale.equals(Enums.LanguageType.ZH_TW.getLocale().toString())) {
             return Enums.LanguageType.ZH_TW.getLocale();
-        }else if(strLocale.equals(Enums.LanguageType.EN_US.getLocale().toString())){
+        } else if (strLocale.equals(Enums.LanguageType.EN_US.getLocale().toString())) {
             return Enums.LanguageType.EN_US.getLocale();
-        }else if(strLocale.equals(Enums.LanguageType.JA_JP.getLocale().toString())){
+        } else if (strLocale.equals(Enums.LanguageType.JA_JP.getLocale().toString())) {
             return Enums.LanguageType.JA_JP.getLocale();
-        }else if(strLocale.equals(Enums.LanguageType.ES_ES.getLocale().toString())){
+        } else if (strLocale.equals(Enums.LanguageType.ES_ES.getLocale().toString())) {
             return Enums.LanguageType.ES_ES.getLocale();
-        }else {
+        } else {
             return Enums.LanguageType.ZH_CN.getLocale();
         }
     }
@@ -346,6 +361,20 @@ public class DeviceUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取屏幕二分之一高度
+     *
+     * @param context
+     * @return
+     */
+    public static int getOneSecondsWidth(Context context) {
+        DisplayMetrics dm = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(dm);
+        int mWidth = dm.widthPixels;
+        return mWidth / 2;
     }
 
     /**
@@ -391,17 +420,31 @@ public class DeviceUtils {
     }
 
     /**
-     * 获取屏幕五分之四高度
+     * 获取屏幕三分之一高度
      *
      * @param context
      * @return
      */
-    public static int getFourFifthsHeight(Context context) {
+    public static int getOneSecondsHeight(Context context) {
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         wm.getDefaultDisplay().getMetrics(dm);
         int mHeight = dm.heightPixels;
-        return mHeight * 4 / 5;
+        return mHeight / 2;
+    }
+
+    /**
+     * 获取屏幕三分之一高度
+     *
+     * @param context
+     * @return
+     */
+    public static int getOneThirdsHeight(Context context) {
+        DisplayMetrics dm = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(dm);
+        int mHeight = dm.heightPixels;
+        return mHeight / 3;
     }
 
     /**
@@ -419,17 +462,17 @@ public class DeviceUtils {
     }
 
     /**
-     * 获取屏幕三分之一高度
+     * 获取屏幕五分之四高度
      *
      * @param context
      * @return
      */
-    public static int getOneThirdsHeight(Context context) {
+    public static int getFourFifthsHeight(Context context) {
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         wm.getDefaultDisplay().getMetrics(dm);
         int mHeight = dm.heightPixels;
-        return mHeight / 3;
+        return mHeight * 4 / 5;
     }
 
 }
