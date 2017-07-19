@@ -1,10 +1,77 @@
 <resources>
 
-    <!-- Base application theme. -->
+
+    <!--白天主题，基准主题，基本颜色-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorAccent</item>
-        <item name="colorPrimaryDark">@color/colorAccent</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/ThemeCurrent</item><!-- 系统状态栏颜色5.0以后才有效 -->
+        <item name="colorPrimary">@color/ThemeCurrent</item><!-- 应用导航栏颜色 -->
+        <item name="colorAccent">@color/ThemeCurrentHint</item><!-- 应用控件选中后颜色 -->
+        <item name="android:textColorPrimary">@color/ThemeCurrent</item><!-- 应用主体文字textColor颜色 -->
+        <item name="android:textColorHint">@color/ThemeCurrentHint</item><!-- 应用主体文字hintColor颜色 -->
+        <item name="android:windowBackground">@color/BGWhiteFFF</item><!-- 应用背景颜色 -->
     </style>
+
+    <!--白天主题，附加主题控件颜色-->
+    <style name="AppTheme.DayTheme" parent="AppTheme">
+        <item name="theme_textColor_white">@color/DayThemeTextColorBlack</item>
+        <item name="theme_textColor_gray">@color/selector_text_green_gray</item>
+        <item name="theme_textColor_lblue">@color/selector_text_green_lgreen</item>
+        <item name="theme_textColorHint">@color/DayThemeTextColorHint</item>
+        <item name="theme_background_blue">@color/DayThemeBackgroundBlue</item>
+        <item name="theme_background_gray">@color/DayThemeBackgroundGray</item>
+        <item name="theme_background_white">@color/DayThemeBackgroundWhite</item>
+        <item name="theme_background_item">@drawable/selector_item_anti_gray</item>
+        <item name="theme_background_button">@drawable/selector_button_click_bgg_lgtlg</item>
+    </style>
+
+    <!--晚上主题，附加主题控件颜色-->
+    <style name="AppTheme.NightTheme" parent="AppTheme">
+        <item name="theme_textColor_white">@color/NightThemeTextColorBlack</item>
+        <item name="theme_textColor_gray">@color/selector_text_black_white</item>
+        <item name="theme_textColor_lblue">@color/selector_text_gray_white</item>
+        <item name="theme_textColorHint">@color/NightThemeTextColorHint</item>
+        <item name="theme_background_blue">@color/NightThemeBackgroundBlue</item>
+        <item name="theme_background_gray">@color/NightThemeBackgroundGray</item>
+        <item name="theme_background_white">@color/NightThemeBackgroundWhite</item>
+        <item name="theme_background_item">@drawable/selector_theme_click_dark</item>
+        <item name="theme_background_button">@drawable/selector_button_click_bgg_lgtlg</item>
+    </style>
+
+    <!--白天主要透明主题，附加属性动画右进右出，可自定颜色-->
+    <style name="AppTheme.DayTheme.Main.Transparent" parent="AppTheme.DayTheme">
+        <item name="android:windowAnimationStyle">@style/AnimMain</item>
+        <item name="colorPrimaryDark">@color/ThemeCurrent</item><!-- 系统状态栏颜色5.0以后才有效 -->
+        <item name="colorPrimary">@color/ThemeCurrent</item><!-- 应用导航栏颜色 -->
+        <item name="colorAccent">@color/ThemeCurrentHint</item><!-- 应用控件选中后颜色 -->
+        <item name="android:textColorPrimary">@color/ThemeCurrent</item><!-- 应用主体文字textColor颜色 -->
+        <item name="android:textColorHint">@color/ThemeCurrentHint</item><!-- 应用主体文字hintColor颜色 -->
+        <item name="android:windowBackground">@android:color/transparent</item><!-- 应用背景颜色 -->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <!--晚上主要透明主题，附加属性动画右进右出，可自定颜色-->
+    <style name="AppTheme.NightTheme.Main.Transparent" parent="AppTheme.NightTheme">
+        <item name="android:windowAnimationStyle">@style/AnimMain</item>
+        <item name="colorPrimaryDark">@color/ThemeCurrent</item><!-- 系统状态栏颜色5.0以后才有效 -->
+        <item name="colorPrimary">@color/ThemeCurrent</item><!-- 应用导航栏颜色 -->
+        <item name="colorAccent">@color/ThemeCurrentHint</item><!-- 应用控件选中后颜色 -->
+        <item name="android:textColorPrimary">@color/ThemeCurrent</item><!-- 应用主体文字textColor颜色 -->
+        <item name="android:textColorHint">@color/ThemeCurrentHint</item><!-- 应用主体文字hintColor颜色 -->
+        <item name="android:windowBackground">@android:color/transparent</item><!-- 应用背景颜色 -->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <!-- 主要切换界面动画 -->
+    <style name="AnimMain" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_to_left
+        </item><!-- 当前的页面隐退动画 -->
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_from_right
+        </item><!-- 将要显示画面进来动画 -->
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_from_left
+        </item><!-- 当前的页面隐退动画 -->
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_to_right
+        </item><!-- 之前的页面进来动画 -->
+
+    </style>
+
 </resources>

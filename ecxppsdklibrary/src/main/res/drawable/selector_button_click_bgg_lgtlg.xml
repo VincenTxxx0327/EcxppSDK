@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/shape_bggray_linelblack_round_rect" android:state_pressed="true"/>
+    <item android:drawable="@drawable/shape_bggray_lineblack_round_rect"/>
+</selector>

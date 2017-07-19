@@ -6,8 +6,10 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.ecxppsdk.R;
 
@@ -20,8 +22,10 @@ import com.ecxppsdk.R;
  */
 public class DialogLoading extends DialogFragment {
 
+    TextView tvMainText;
 
     private AlertDialog mAlertDialog;
+    private String mText;
 
     @NonNull
     @Override
@@ -31,10 +35,15 @@ public class DialogLoading extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_loading_dialog, null);
         builder.setView(view);
         setCancelable(false);
+        tvMainText = (TextView) view.findViewById(R.id.tv_dialog_mainText);
+        tvMainText.setText(TextUtils.isEmpty(mText) ? getString(R.string.text_loading) : mText);
         mAlertDialog = builder.create();
         return mAlertDialog;
     }
 
+    public void setText(String text) {
+        mText = text;
+    }
 
     @Override
     public void onDismiss(DialogInterface dialog) {

@@ -7,4 +7,15 @@
         <attr name="left_src" format="reference"/>
         <attr name="right_src" format="reference"/>
     </declare-styleable>
+
+    <attr name="theme_background_blue" format="reference|color"/>
+    <attr name="theme_background_gray" format="reference|color"/>
+    <attr name="theme_background_white" format="reference|color"/>
+    <attr name="theme_background_item" format="reference|color"/>
+    <attr name="theme_background_button" format="reference|color"/>
+    <attr name="theme_textColor_white" format="reference|color"/>
+    <attr name="theme_textColor_gray" format="reference|color"/>
+    <attr name="theme_textColor_lblue" format="reference|color"/>
+    <attr name="theme_textColorHint" format="reference|color"/>
+
 </resources>

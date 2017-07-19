@@ -11,32 +11,21 @@ import android.widget.Toast;
  */
 public class ToastUtils {
 
-    private static Toast mToast;
 
     public static void showToast(Context context, String content) {
-        if (mToast == null) {
-            mToast = Toast.makeText(context, content, Toast.LENGTH_SHORT);
-        } else {
-            mToast.setText(content);
-        }
+        Toast mToast = Toast.makeText(context, content, Toast.LENGTH_SHORT);
         mToast.show();
     }
 
     public static void showToast(Context context, int resId) {
-        if (mToast == null) {
-            mToast = Toast.makeText(context, resId, Toast.LENGTH_SHORT);
-        } else {
-            mToast.setText(resId);
-        }
+        Toast mToast = Toast.makeText(context, resId, Toast.LENGTH_SHORT);
         mToast.show();
     }
 
     public static void showToastLong(Context context, String content) {
-        if (mToast == null) {
-            mToast = Toast.makeText(context, content, Toast.LENGTH_LONG);
-        } else {
-            mToast.setText(content);
-        }
+        Toast mToast = Toast.makeText(context, content, Toast.LENGTH_LONG);
         mToast.show();
     }
+
+
 }

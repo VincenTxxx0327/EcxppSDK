@@ -10,10 +10,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Author: VincenT
- * Date: 2017/4/24 10:56
+ * Author: product-m-31
+ * Date: 2017/3/23 10:56
  * Contact:qq 328551489
- * Purpose:基本Pager适配器
+ * Purpose:此类用于..
  */
 
 public abstract class BasePagerAdapter<T> extends PagerAdapter {
@@ -73,9 +73,9 @@ public abstract class BasePagerAdapter<T> extends PagerAdapter {
         ViewHolder viewHolder = null;
         View convertView;
 //        if (mViewCache.size() == 0) {//从废弃的里去取 取到则使用 取不到则创建
-        convertView = LayoutInflater.from(parent.getContext()).inflate(getItemLayout(), parent, false);
-        viewHolder = onCreateViewHolder(convertView, viewHolder, position);
-        convertView.setTag(viewHolder);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(getItemLayout(), parent, false);
+            viewHolder = onCreateViewHolder(convertView, viewHolder, position);
+            convertView.setTag(viewHolder);
 //        } else {
 //            convertView = mViewCache.removeFirst();
 //            viewHolder = (ViewHolder)convertView.getTag();
@@ -106,10 +106,19 @@ public abstract class BasePagerAdapter<T> extends PagerAdapter {
         boolean onItemLongClick(View view, int position);
     }
 
+    public interface OnItemImageClickListener {
+        void onImageClick(View view, int position);
+    }
+
     protected OnItemClickListener mOnItemClickListener;
+    protected OnItemImageClickListener mOnItemImageClickListener;
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemImageClickListener(OnItemImageClickListener onItemImageClickListener) {
+        mOnItemImageClickListener = onItemImageClickListener;
     }
 
 }

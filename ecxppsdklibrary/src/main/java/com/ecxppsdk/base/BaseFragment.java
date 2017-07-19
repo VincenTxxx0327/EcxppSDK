@@ -4,9 +4,6 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.ecxppsdk.R;
 import com.ecxppsdk.data.Constant;
@@ -15,35 +12,21 @@ import com.ecxppsdk.easypermissions.EasyPermissions;
 import com.ecxppsdk.utils.ToastUtils;
 
 import org.xutils.common.util.LogUtil;
-import org.xutils.x;
 
 import java.util.List;
 
 
-/**
- * Author: VincenT
- * Date: 2017/4/24 14:38
- * Contact:qq 328551489
- * Purpose:基本Fragment
- */
-public class BaseFragment extends Fragment implements EasyPermissions.PermissionCallbacks {
+public abstract class BaseFragment extends Fragment implements EasyPermissions.PermissionCallbacks {
 
-    private boolean isInject = false;
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        isInject = true;
-        return x.view().inject(this, inflater, container);
-    }
+    protected boolean isDayTheme = true;
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        if (!isInject) {
-            x.view().inject(this, this.getView());
-        }
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        isDayTheme = isDayTheme();
+        super.onCreate(savedInstanceState);
     }
+
+    public abstract boolean isDayTheme();
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -71,17 +54,19 @@ public class BaseFragment extends Fragment implements EasyPermissions.Permission
      */
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
+
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             // 被永久拒绝的话提示自己手动授予
-            new AppSettingsDialog.Builder(this, getString(R.string.dialogText_needAuthorization))
-                    .setTitle(getString(R.string.dialogText_tips))
-                    .setPositiveButton(getString(R.string.dialogText_confirm))
+            new AppSettingsDialog.Builder(this, "应用程序所需权限已被禁用，这可能会影响程序的正常使用，是否打开应用程序设置界面授予权限")
+                    .setTitle("提示")
+                    .setPositiveButton("确定")
                     .setNegativeButton(getString(R.string.dialogText_cancel), null /* click listener */)
                     .setRequestCode(Constant.RC_SETTINGS_SCREEN)
                     .build()
                     .show();
         } else {
-            ToastUtils.showToast(getActivity(), getString(R.string.toastText_getAuthorizationFailed));
+            ToastUtils.showToast(getActivity(), "获取权限失败");
         }
     }
+
 }

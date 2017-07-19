@@ -1,12 +1,12 @@
 package com.ecxppsdk.base;
 
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 
 import com.ecxppsdk.R;
 
@@ -22,7 +22,7 @@ import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
  * Contact:qq 328551489
  * Purpose:基本适配器
  */
-public abstract class BaseActivity extends AppCompatActivity implements BGASwipeBackHelper.Delegate {
+public abstract class SwipeActivity extends Activity implements BGASwipeBackHelper.Delegate {
 
     private Map<Integer, Runnable> allowablePermissionRunnables = new HashMap<>();
     private Map<Integer, Runnable> disallowablePermissionRunnables = new HashMap<>();
@@ -32,8 +32,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BGASwipe
         initSwipeBackFinish();
         super.onCreate(savedInstanceState);
     }
-
-    public abstract boolean isDayTheme();
 
     /**
      * 初始化滑动返回。在 super.onCreate(savedInstanceState) 之前调用该方法
@@ -68,7 +66,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BGASwipe
         if (Build.VERSION.SDK_INT >= 23) {
             int checkCallPhonePermission = ContextCompat.checkSelfPermission(getApplicationContext(), permission);
             if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(BaseActivity.this, new String[]{permission}, id);
+                ActivityCompat.requestPermissions(SwipeActivity.this, new String[]{permission}, id);
                 return;
             } else {
                 allowableRunnable.run();
@@ -129,7 +127,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BGASwipe
         if (mSwipeBackHelper.isSliding()) {
             return;
         }
-        mSwipeBackHelper.backward();
+        mSwipeBackHelper.swipeBackward();
     }
 
 }

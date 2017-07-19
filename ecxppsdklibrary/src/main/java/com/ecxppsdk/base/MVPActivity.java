@@ -24,29 +24,52 @@ import java.util.List;
 
 /**
  * Author: VincenT
- * Date: 2017/4/24 9:32
+ * Date: 2017/3/1 9:32
  * Contact:qq 328551489
  * Purpose:View层处理类
  */
 public abstract class MVPActivity<P extends BasePresenter> extends BaseActivity implements BaseView<P>, EasyPermissions.PermissionCallbacks {
 
     protected P mPresenter;
+    protected boolean mIsCanSwipeBack = false;
     protected DialogLoading mDialogLoading;
-    protected static FragmentManager mFragmentManager;
+    protected FragmentManager mFragmentManager;
+    protected boolean isDayTheme = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        isDayTheme = isDayTheme();
+        if (isDayTheme) {
+            setTheme(setDayTheme());//默认是白天主题
+        } else {
+            setTheme(setNightTheme());//本地加载，否则是晚上主题
+        }
         mPresenter = createPresenter();
         mFragmentManager = getFragmentManager();
+//        LogUtil.d("mFragmentManager-hashCode:"+ mFragmentManager.hashCode());
         mDialogLoading = new DialogLoading();
+        super.onCreate(savedInstanceState);
     }
 
     protected abstract P createPresenter();
 
+    protected int setDayTheme() {
+        return R.style.AppTheme_DayTheme_Main_Transparent;
+    }
+
+    protected int setNightTheme() {
+        return R.style.AppTheme_NightTheme_Main_Transparent;
+    }
+
     @Override
-    public void setPresenter(P presenter) {
+    public void setPresenter(P presenter, boolean isCanSwipeBack) {
         mPresenter = presenter;
+        mIsCanSwipeBack = isCanSwipeBack;
+    }
+
+    @Override
+    protected boolean isCanSwipeBack() {
+        return mIsCanSwipeBack;
     }
 
     @Override
@@ -76,8 +99,14 @@ public abstract class MVPActivity<P extends BasePresenter> extends BaseActivity 
     }
 
     @Override
-    public void showLoadingDialog(String tag) {
+    public void resetView(String msg) {
+
+    }
+
+    @Override
+    public void showLoadingDialog(String tag, String mainText) {
         if (!mDialogLoading.isAdded() && !mDialogLoading.isVisible() && !mDialogLoading.isRemoving()) {
+            mDialogLoading.setText(mainText);
             mDialogLoading.show(mFragmentManager, tag);
         }
     }
@@ -121,13 +150,13 @@ public abstract class MVPActivity<P extends BasePresenter> extends BaseActivity 
         }
     }
 
-    public void openCaptureActivity(Activity activity) {
+    public void openScanActivity(Activity activity) {
         Intent scan = new Intent(activity, CaptureActivity.class);
         scan.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivityForResult(scan, Constant.RC_SCAN_CODE);
     }
 
-    protected void openSystemSettingUI(Activity activity) {
+    protected void showAppSettingDialog(Activity activity) {
         new AppSettingsDialog.Builder(activity, getString(R.string.dialogText_needAuthorization))
                 .setTitle(getString(R.string.dialogText_tips))
                 .setPositiveButton(getString(R.string.dialogText_setting))

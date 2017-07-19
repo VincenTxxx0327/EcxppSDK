@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorAccent">@color/ThemeGreen</color>
-    <color name="ThemeGreen">#D2E475</color>
+    <color name="ThemeLGreen">#D2E475</color>
+    <color name="ThemeGreen">#C0E367</color>
+    <color name="ThemeDGreen">#98CB00</color>
+    <color name="ThemeBlack">#3A3B3F</color>
+    <color name="ThemeLBlack">@color/BGGray6666</color>
 
-    //等同主题深绿色
-    //等同主题绿色
+    <color name="ThemeCurrent">@color/ThemeGreen</color>
+    <color name="ThemeCurrentAnti">@color/BGWhiteFFF</color>
+    <color name="ThemeCurrentHint">@color/BGGrayDDDD</color>
 
-    <!-- loading框里文字动画颜色 -->
-    <!-- loading框里文字动画颜色 -->
-    <!-- 176透明黑色蒙版-->
-    <!-- 176透明白色蒙版-->
-    <!-- 125透明黑色蒙版 -->
-    <!-- 125透明白色蒙版 -->
-    <!-- 96透明黑色蒙版 -->
-    <!-- 96透明白色蒙版 -->
-    <!-- 176透明黑色二维码结果点 -->
-    <!-- 主题绿色二维码可能结果点 -->
+
+    <color name="DayThemeBackgroundWhite">@color/BGWhiteFFF</color>
+    <color name="DayThemeBackgroundBlue">@color/ThemeGreen</color>
+    <color name="DayThemeBackgroundGray">@color/BGWhiteFFF</color>
+    <color name="DayThemeTextColorBlack">@color/ThemeBlack</color>
+    <color name="DayThemeTextColorWhite">@color/BGWhiteFFF</color>
+    <color name="DayThemeTextColorHint">@color/BGGray9999</color>
+
+    <color name="NightThemeBackgroundWhite">@color/ThemeBlack</color>
+    <color name="NightThemeBackgroundBlue">@color/ThemeBlack</color>
+    <color name="NightThemeBackgroundGray">@color/BGGrayAAAA</color>
+    <color name="NightThemeTextColorBlack">@color/BGGrayDDDD</color>
+    <color name="NightThemeTextColorWhite">@color/BGGrayAAAA</color>
+    <color name="NightThemeTextColorHint">@color/BGGrayAAAA</color>
+
+    <color name="BGWhiteFFF">#FFFFFF</color>
+    <color name="BGGrayDDDD">#DDDDDD</color>
+    <color name="BGGrayAAAA">#AAAAAA</color>
+    <color name="BGGray9999">#999999</color>
+    <color name="BGGray6666">#666666</color>
 
 </resources>
